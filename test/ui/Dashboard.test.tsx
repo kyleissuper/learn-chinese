@@ -1,7 +1,7 @@
-import { render, screen, waitFor } from "@testing-library/preact";
+import { screen, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Dashboard } from "../../src/pages/Dashboard";
-import { makeArticleIndex, makeCards, mockFetch, jsonResponse } from "./helpers";
+import { makeArticleIndex, makeCards, mockFetch, jsonResponse, renderWithRouter } from "./helpers";
 
 describe("Dashboard", () => {
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe("Dashboard", () => {
       if (url.includes("index.json")) return jsonResponse([]);
       return jsonResponse([]);
     });
-    render(<Dashboard />);
+    renderWithRouter(<Dashboard />);
     expect(screen.getByText("Learn Mandarin")).toBeInTheDocument();
     expect(screen.getByText("Read. Review. Repeat.")).toBeInTheDocument();
   });
@@ -24,7 +24,7 @@ describe("Dashboard", () => {
       if (url.includes("index.json")) return jsonResponse(articles);
       return jsonResponse([]);
     });
-    render(<Dashboard />);
+    renderWithRouter(<Dashboard />);
     await waitFor(() => {
       expect(screen.getByText("Article 1")).toBeInTheDocument();
     });
@@ -37,7 +37,7 @@ describe("Dashboard", () => {
       if (url.includes("index.json")) return jsonResponse(articles);
       return jsonResponse([]);
     });
-    render(<Dashboard />);
+    renderWithRouter(<Dashboard />);
     await waitFor(() => {
       expect(screen.getByText("Article 1")).toBeInTheDocument();
     });
@@ -50,7 +50,7 @@ describe("Dashboard", () => {
       if (url.includes("index.json")) return jsonResponse(makeArticleIndex(1));
       return jsonResponse(makeCards(5));
     });
-    render(<Dashboard />);
+    renderWithRouter(<Dashboard />);
     await waitFor(() => {
       expect(screen.getByText("5 cards due for review")).toBeInTheDocument();
     });
@@ -61,7 +61,7 @@ describe("Dashboard", () => {
       if (url.includes("index.json")) return jsonResponse(makeArticleIndex(1));
       return jsonResponse([]);
     });
-    render(<Dashboard />);
+    renderWithRouter(<Dashboard />);
     await waitFor(() => {
       expect(screen.getByText("Article 1")).toBeInTheDocument();
     });
@@ -73,7 +73,7 @@ describe("Dashboard", () => {
       if (url.includes("index.json")) return jsonResponse([]);
       return jsonResponse([]);
     });
-    render(<Dashboard />);
+    renderWithRouter(<Dashboard />);
     await waitFor(() => {
       expect(screen.getByText(/No articles yet/)).toBeInTheDocument();
     });
@@ -84,7 +84,7 @@ describe("Dashboard", () => {
       if (url.includes("index.json")) return jsonResponse(makeArticleIndex(1));
       return Promise.reject(new Error("network error"));
     });
-    render(<Dashboard />);
+    renderWithRouter(<Dashboard />);
     await waitFor(() => {
       expect(screen.getByText("Article 1")).toBeInTheDocument();
     });

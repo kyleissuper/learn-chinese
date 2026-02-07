@@ -1,4 +1,5 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { SpeakButton } from "../components/SpeakButton";
 
 interface Segment {
@@ -32,16 +33,16 @@ function Word({ seg, active, showPinyin, onTap }: WordProps) {
   };
 
   return (
-    <span class="word relative inline-block" onClick={(e) => { e.stopPropagation(); onTap(); }}>
+    <span className="word relative inline-block" onClick={(e) => { e.stopPropagation(); onTap(); }}>
       <ruby>
         {seg.text}
-        <rt class={`text-xs text-zinc-500 font-normal ${showPinyin ? "" : "hidden"}`}>
+        <rt className={`text-xs text-zinc-500 font-normal ${showPinyin ? "" : "hidden"}`}>
           {seg.pinyin}
         </rt>
       </ruby>
       {active && (
-        <div ref={clamp} class="popup">
-          <span class="py">{seg.pinyin}</span>
+        <div ref={clamp} className="popup">
+          <span className="py">{seg.pinyin}</span>
           {seg.definition}
           <SpeakButton text={seg.text} />
         </div>
@@ -50,7 +51,8 @@ function Word({ seg, active, showPinyin, onTap }: WordProps) {
   );
 }
 
-export function Reader({ id }: { id?: string }) {
+export function Reader() {
+  const { id } = useParams<{ id: string }>();
   const [article, setArticle] = useState<Article | null>(null);
   const [showPinyin, setShowPinyin] = useState(false);
   const [activeWord, setActiveWord] = useState<string | null>(null);
@@ -69,26 +71,26 @@ export function Reader({ id }: { id?: string }) {
     return () => document.removeEventListener("click", dismiss);
   }, []);
 
-  if (error) return <div class="max-w-2xl mx-auto px-4 py-12"><p class="text-zinc-600 italic">Article not found.</p></div>;
+  if (error) return <div className="max-w-2xl mx-auto px-4 py-12"><p className="text-zinc-600 italic">Article not found.</p></div>;
   if (!article) return (
-    <div class="max-w-2xl mx-auto px-4 py-12 space-y-4">
-      <p class="sr-only">Loading...</p>
-      <div class="skeleton h-8 w-48" />
-      <div class="skeleton h-4 w-64" />
-      <div class="skeleton h-40 w-full mt-6" />
+    <div className="max-w-2xl mx-auto px-4 py-12 space-y-4">
+      <p className="sr-only">Loading...</p>
+      <div className="skeleton h-8 w-48" />
+      <div className="skeleton h-4 w-64" />
+      <div className="skeleton h-40 w-full mt-6" />
     </div>
   );
 
   return (
-    <div class="max-w-2xl mx-auto px-4 py-12" onClick={() => setActiveWord(null)}>
-      <a href="/" class="text-zinc-600 hover:text-zinc-400 text-sm mb-6 inline-block transition-colors">&larr; Back</a>
-      <h1 class="text-3xl font-semibold mb-1 tracking-tight text-zinc-100">{article.title} <SpeakButton text={article.title} /></h1>
-      <p class="text-zinc-500 text-sm mb-8">{article.titlePinyin} — {article.titleTranslation} · {article.level}</p>
-      <label class="flex items-center gap-2 mb-8 text-sm text-zinc-500 select-none cursor-pointer">
-        <input type="checkbox" checked={showPinyin} onChange={() => setShowPinyin(!showPinyin)} class="rounded accent-blue-500" />
+    <div className="max-w-2xl mx-auto px-4 py-12" onClick={() => setActiveWord(null)}>
+      <Link to="/" className="text-zinc-600 hover:text-zinc-400 text-sm mb-6 inline-block transition-colors">&larr; Back</Link>
+      <h1 className="text-3xl font-semibold mb-1 tracking-tight text-zinc-100">{article.title} <SpeakButton text={article.title} /></h1>
+      <p className="text-zinc-500 text-sm mb-8">{article.titlePinyin} — {article.titleTranslation} · {article.level}</p>
+      <label className="flex items-center gap-2 mb-8 text-sm text-zinc-500 select-none cursor-pointer">
+        <input type="checkbox" checked={showPinyin} onChange={() => setShowPinyin(!showPinyin)} className="rounded accent-blue-500" />
         Show all pinyin
       </label>
-      <article class="text-2xl leading-relaxed space-y-6 text-zinc-200">
+      <article className="text-2xl leading-relaxed space-y-6 text-zinc-200">
         {article.paragraphs.map((para, i) => (
           <p key={i}>
             {para.map((seg, j) => {

@@ -1,4 +1,16 @@
+import { render } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { vi } from "vitest";
+import type { ReactElement } from "react";
+
+/** Render a component wrapped in MemoryRouter. */
+export function renderWithRouter(ui: ReactElement, { route = "/" } = {}) {
+  return render(
+    <MemoryRouter initialEntries={[route]}>
+      {ui}
+    </MemoryRouter>
+  );
+}
 
 export function makeArticle(overrides = {}) {
   return {

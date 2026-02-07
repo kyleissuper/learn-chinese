@@ -1,7 +1,7 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/preact";
+import { screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Review } from "../../src/pages/Review";
-import { makeCards, mockFetch, jsonResponse, mockSpeechSynthesis } from "./helpers";
+import { makeCards, mockFetch, jsonResponse, mockSpeechSynthesis, renderWithRouter } from "./helpers";
 
 describe("Review", () => {
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe("Review", () => {
 
   it("shows completion screen when no cards due", async () => {
     mockFetch(() => jsonResponse([]));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("All caught up!")).toBeInTheDocument();
     });
@@ -19,7 +19,7 @@ describe("Review", () => {
 
   it("shows first card front (not flipped)", async () => {
     mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -29,7 +29,7 @@ describe("Review", () => {
 
   it("shows card counter", async () => {
     mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("1 / 3")).toBeInTheDocument();
     });
@@ -37,7 +37,7 @@ describe("Review", () => {
 
   it("flips card on click", async () => {
     mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -47,7 +47,7 @@ describe("Review", () => {
 
   it("flips card on spacebar", async () => {
     mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -57,7 +57,7 @@ describe("Review", () => {
 
   it("rating buttons visible only when flipped", async () => {
     mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -71,7 +71,7 @@ describe("Review", () => {
 
   it("advances to next card after rating", async () => {
     const fetchMock = mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -85,7 +85,7 @@ describe("Review", () => {
 
   it("fires POST /api/review with correct body", async () => {
     const fetchMock = mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -100,7 +100,7 @@ describe("Review", () => {
 
   it("number key 1 rates card when flipped", async () => {
     const fetchMock = mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -118,7 +118,7 @@ describe("Review", () => {
 
   it("number keys ignored when not flipped", async () => {
     mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -130,7 +130,7 @@ describe("Review", () => {
 
   it("completion screen after all cards rated (singular)", async () => {
     mockFetch(() => jsonResponse(makeCards(1)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -144,7 +144,7 @@ describe("Review", () => {
 
   it("completion screen plural wording", async () => {
     mockFetch(() => jsonResponse(makeCards(2)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -166,7 +166,7 @@ describe("Review", () => {
   it("speaks the word when clicking speaker button on back", async () => {
     const speak = mockSpeechSynthesis();
     mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -180,7 +180,7 @@ describe("Review", () => {
   it("speaks the example sentence when clicking its speaker button", async () => {
     const speak = mockSpeechSynthesis();
     mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });
@@ -193,7 +193,7 @@ describe("Review", () => {
 
   it("back link to home", async () => {
     mockFetch(() => jsonResponse(makeCards(3)));
-    render(<Review />);
+    renderWithRouter(<Review />);
     await waitFor(() => {
       expect(screen.getByText("字1")).toBeInTheDocument();
     });

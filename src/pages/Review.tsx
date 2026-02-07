@@ -1,4 +1,5 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { SpeakButton } from "../components/SpeakButton";
 
 interface Card {
@@ -62,42 +63,42 @@ export function Review() {
   const card = cards[cardIndex];
 
   return (
-    <div class="max-w-md mx-auto px-4 py-12 flex flex-col items-center">
-      <a href="/" class="self-start text-zinc-600 hover:text-zinc-400 text-sm mb-6 transition-colors">&larr; Back</a>
+    <div className="max-w-md mx-auto px-4 py-12 flex flex-col items-center">
+      <Link to="/" className="self-start text-zinc-600 hover:text-zinc-400 text-sm mb-6 transition-colors">&larr; Back</Link>
 
       {!done && card && <>
         {/* Progress bar */}
-        <div class="w-full mb-6 flex items-center gap-3">
-          <div class="flex-1 h-1 bg-zinc-800 rounded-full overflow-hidden">
-            <div class="h-full bg-blue-500 rounded-full transition-all duration-300" style={{ width: `${((cardIndex) / cards.length) * 100}%` }} />
+        <div className="w-full mb-6 flex items-center gap-3">
+          <div className="flex-1 h-1 bg-zinc-800 rounded-full overflow-hidden">
+            <div className="h-full bg-blue-500 rounded-full transition-all duration-300" style={{ width: `${((cardIndex) / cards.length) * 100}%` }} />
           </div>
-          <span class="text-zinc-600 text-xs tabular-nums">{cardIndex + 1} / {cards.length}</span>
+          <span className="text-zinc-600 text-xs tabular-nums">{cardIndex + 1} / {cards.length}</span>
         </div>
 
-        <div key={card.id} class="card-enter w-full bg-zinc-900/80 rounded-2xl border border-zinc-800/60 p-8 text-center min-h-[260px] flex flex-col items-center justify-center cursor-pointer select-none"
+        <div key={card.id} className="card-enter w-full bg-zinc-900/80 rounded-2xl border border-zinc-800/60 p-8 text-center min-h-[260px] flex flex-col items-center justify-center cursor-pointer select-none"
           onClick={() => setFlipped(true)}>
           {!flipped
-            ? <p class="text-5xl font-semibold text-zinc-100">{card.front}</p>
-            : <div class="card-enter">
-                <p class="text-2xl text-blue-400 mb-2">
+            ? <p className="text-5xl font-semibold text-zinc-100">{card.front}</p>
+            : <div className="card-enter">
+                <p className="text-2xl text-blue-400 mb-2">
                   {card.pinyin}
                   <SpeakButton text={card.front} />
                 </p>
-                <p class="text-xl text-zinc-200">{card.definition}</p>
-                {card.example && <p class="text-zinc-400 mt-4 text-lg">
+                <p className="text-xl text-zinc-200">{card.definition}</p>
+                {card.example && <p className="text-zinc-400 mt-4 text-lg">
                   {card.example}
-                  <SpeakButton text={card.example} class="text-base" />
+                  <SpeakButton text={card.example} className="text-base" />
                 </p>}
-                {card.exampleTranslation && <p class="text-zinc-600 text-sm mt-1">{card.exampleTranslation}</p>}
+                {card.exampleTranslation && <p className="text-zinc-600 text-sm mt-1">{card.exampleTranslation}</p>}
               </div>
           }
         </div>
-        {!flipped && <p class="text-zinc-600 text-sm mt-4">Tap to reveal</p>}
+        {!flipped && <p className="text-zinc-600 text-sm mt-4">Tap to reveal</p>}
         {flipped && (
-          <div class="grid grid-cols-4 gap-2 w-full mt-6">
+          <div className="grid grid-cols-4 gap-2 w-full mt-6">
             {RATINGS.map(r => (
               <button key={r.value} onClick={() => rate(r.value)}
-                class={`py-3 rounded-xl font-medium transition-all hover:scale-[1.03] active:scale-[0.97] ${r.style}`}>
+                className={`py-3 rounded-xl font-medium transition-all hover:scale-[1.03] active:scale-[0.97] ${r.style}`}>
                 {r.label}
               </button>
             ))}
@@ -106,10 +107,10 @@ export function Review() {
       </>}
 
       {done && (
-        <div class="text-center mt-20">
-          <p class="text-4xl font-medium mb-3 text-zinc-100">All caught up!</p>
-          <p class="text-zinc-500 mb-8">{reviewed ? `Reviewed ${reviewed} card${reviewed === 1 ? "" : "s"}.` : "No cards due right now."}</p>
-          <a href="/" class="inline-block px-5 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-zinc-100 transition-all text-sm">Back to articles</a>
+        <div className="text-center mt-20">
+          <p className="text-4xl font-medium mb-3 text-zinc-100">All caught up!</p>
+          <p className="text-zinc-500 mb-8">{reviewed ? `Reviewed ${reviewed} card${reviewed === 1 ? "" : "s"}.` : "No cards due right now."}</p>
+          <Link to="/" className="inline-block px-5 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-zinc-100 transition-all text-sm">Back to articles</Link>
         </div>
       )}
     </div>

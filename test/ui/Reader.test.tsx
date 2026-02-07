@@ -1,7 +1,18 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/preact";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Reader } from "../../src/pages/Reader";
 import { makeArticle, mockFetch, mockSpeechSynthesis, jsonResponse, errorResponse } from "./helpers";
+
+function renderReader(id = "test-1") {
+  return render(
+    <MemoryRouter initialEntries={[`/read/${id}`]}>
+      <Routes>
+        <Route path="/read/:id" element={<Reader />} />
+      </Routes>
+    </MemoryRouter>
+  );
+}
 
 describe("Reader", () => {
   beforeEach(() => {
@@ -10,14 +21,14 @@ describe("Reader", () => {
 
   it("shows Loading before fetch resolves", () => {
     mockFetch(() => new Promise(() => {})); // never resolves
-    render(<Reader id="test-1" />);
+    renderReader();
     expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
   it("renders article title and metadata after fetch", async () => {
     const article = makeArticle();
     mockFetch(() => jsonResponse(article));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("测试文章")).toBeInTheDocument();
     });
@@ -27,7 +38,7 @@ describe("Reader", () => {
 
   it("renders clickable words and punctuation as plain text", async () => {
     mockFetch(() => jsonResponse(makeArticle()));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("你")).toBeInTheDocument();
     });
@@ -38,7 +49,7 @@ describe("Reader", () => {
 
   it("shows tooltip popup when clicking a word", async () => {
     mockFetch(() => jsonResponse(makeArticle()));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("你")).toBeInTheDocument();
     });
@@ -48,7 +59,7 @@ describe("Reader", () => {
 
   it("dismisses tooltip when clicking article container", async () => {
     mockFetch(() => jsonResponse(makeArticle()));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("你")).toBeInTheDocument();
     });
@@ -61,7 +72,7 @@ describe("Reader", () => {
 
   it("switches tooltip when clicking a different word", async () => {
     mockFetch(() => jsonResponse(makeArticle()));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("你")).toBeInTheDocument();
     });
@@ -74,7 +85,7 @@ describe("Reader", () => {
 
   it("toggles tooltip off when clicking same word again", async () => {
     mockFetch(() => jsonResponse(makeArticle()));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("你")).toBeInTheDocument();
     });
@@ -86,7 +97,7 @@ describe("Reader", () => {
 
   it("hides pinyin ruby annotations by default", async () => {
     mockFetch(() => jsonResponse(makeArticle()));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("你")).toBeInTheDocument();
     });
@@ -99,7 +110,7 @@ describe("Reader", () => {
 
   it("shows pinyin when checkbox toggled", async () => {
     mockFetch(() => jsonResponse(makeArticle()));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("你")).toBeInTheDocument();
     });
@@ -113,7 +124,7 @@ describe("Reader", () => {
 
   it("shows error when fetch returns 404", async () => {
     mockFetch(() => errorResponse(404));
-    render(<Reader id="nonexistent" />);
+    renderReader("nonexistent");
     await waitFor(() => {
       expect(screen.getByText("Article not found.")).toBeInTheDocument();
     });
@@ -121,7 +132,7 @@ describe("Reader", () => {
 
   it("shows error when fetch rejects (network error)", async () => {
     mockFetch(() => Promise.reject(new Error("network error")));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("Article not found.")).toBeInTheDocument();
     });
@@ -130,7 +141,7 @@ describe("Reader", () => {
   it("speaks the word aloud when clicking the speaker button", async () => {
     const speak = mockSpeechSynthesis();
     mockFetch(() => jsonResponse(makeArticle()));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("你")).toBeInTheDocument();
     });
@@ -144,7 +155,7 @@ describe("Reader", () => {
 
   it("dismisses tooltip on click outside article container", async () => {
     mockFetch(() => jsonResponse(makeArticle()));
-    render(<Reader id="test-1" />);
+    renderReader();
     await waitFor(() => {
       expect(screen.getByText("你")).toBeInTheDocument();
     });
