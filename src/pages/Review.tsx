@@ -54,7 +54,7 @@ export function Review() {
     fetch("/api/review", {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ cardId: c.id, rating }),
-    });
+    }).catch(() => {});
     setReviewed(r => r + 1);
     setCardIndex(i => i + 1);
     setFlipped(false);
