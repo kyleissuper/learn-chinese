@@ -5,7 +5,7 @@ const { randomUUID } = require("crypto");
 
 const [, , file, ...flags] = process.argv;
 if (!file) {
-  console.error("Usage: node scripts/import.js <deck.json> [--remote]");
+  console.error("Usage: node scripts/import.js <deck.json> [--remote] [--preview]");
   process.exit(1);
 }
 
@@ -34,7 +34,9 @@ FROM json_each('${json}');`;
 
 const tmp = require("os").tmpdir() + "/import-cards.sql";
 writeFileSync(tmp, sql);
-const target = flags.includes("--remote") ? "--remote" : "--local";
+const remote = flags.includes("--remote");
+const preview = flags.includes("--preview");
+const target = remote ? (preview ? "--remote --preview" : "--remote") : "--local";
 execSync(`npx wrangler d1 execute learn-mandarin ${target} --file=${tmp}`, {
   stdio: "inherit",
 });

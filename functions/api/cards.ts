@@ -18,16 +18,23 @@ const CardInput = z.object({
 });
 const DeckInput = z.object({ cards: z.array(CardInput).min(1) });
 
-interface Env { DB: D1Database }
+interface Env { DB: D1Database; CF_PAGES_BRANCH?: string }
 
 export const onRequestGet: PagesFunction<Env> = async ({ env, request }) => {
   const db = drizzle(env.DB);
   const dueOnly = new URL(request.url).searchParams.get("due") === "true";
   const now = new Date().toISOString();
 
-  const rows = dueOnly
-    ? await db.select().from(cards).where(lte(cards.due, now)).orderBy(cards.due).limit(50)
-    : await db.select().from(cards).orderBy(desc(cards.createdAt));
+  let rows;
+
+  if (!dueOnly) {
+    rows = await db.select().from(cards).orderBy(desc(cards.createdAt));
+  } else if (env.CF_PAGES_BRANCH && env.CF_PAGES_BRANCH !== "main") {
+    // Preview deployments: skip the due-date filter so demo users always have cards to review.
+    rows = await db.select().from(cards).orderBy(cards.due).limit(50);
+  } else {
+    rows = await db.select().from(cards).where(lte(cards.due, now)).orderBy(cards.due).limit(50);
+  }
 
   return Response.json(rows);
 };

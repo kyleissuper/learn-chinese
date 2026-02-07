@@ -52,8 +52,9 @@ else
 preview_database_id = \"$PREVIEW_DB_ID\"" wrangler.toml
 fi
 
-# 5. Run migrations (production + local; preview is handled by CI)
+# 5. Run migrations (production + preview + local)
 $WRANGLER d1 migrations apply --remote
+$WRANGLER d1 migrations apply --remote --preview
 $WRANGLER d1 migrations apply --local
 
 # 6. Pages project (ignore "already exists", fail on anything else)
@@ -63,6 +64,13 @@ OUTPUT=$($WRANGLER pages project create "$PROJECT" 2>&1) || {
     exit 1
   fi
 }
+
+# 7. Seed preview with sample cards so demo users always have content
+echo "Seeding preview database with flashcard decks..."
+for deck in agent/content/decks/*.json; do
+  [ "$(basename "$deck")" = "index.json" ] && continue
+  node scripts/import.js "$deck" --remote --preview
+done
 
 echo ""
 echo "Done. For CI/CD, add these GitHub repo secrets (Settings > Secrets > Actions):"
