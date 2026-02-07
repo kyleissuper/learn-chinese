@@ -24,7 +24,7 @@ interface WordProps {
 }
 
 function Word({ seg, active, showPinyin, onTap }: WordProps) {
-  const clamp = (el: HTMLDivElement | null) => {
+  const clamp = (el: HTMLSpanElement | null) => {
     if (!el) return;
     const { left, right } = el.getBoundingClientRect();
     const vw = window.innerWidth;
@@ -41,11 +41,11 @@ function Word({ seg, active, showPinyin, onTap }: WordProps) {
         </rt>
       </ruby>
       {active && (
-        <div ref={clamp} className="popup">
+        <span ref={clamp} className="popup">
           <span className="py">{seg.pinyin}</span>
           {seg.definition}
           <SpeakButton text={seg.text} />
-        </div>
+        </span>
       )}
     </span>
   );
