@@ -1,0 +1,35 @@
+{
+  "name": "learn-mandarin",
+  "version": "1.0.0",
+  "description": "Personal Mandarin learning app: AI agent-generated content + spaced repetition, deployed on Cloudflare Pages",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "npm run build && wrangler pages dev dist",
+    "build": "vite build",
+    "db:create": "wrangler d1 create learn-mandarin",
+    "test": "vitest run && vitest run --config vitest.config.ui.ts",
+    "test:api": "vitest run",
+    "test:ui": "vitest run --config vitest.config.ui.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.1",
+    "preact": "^10.28.3",
+    "preact-router": "^4.1.2",
+    "ts-fsrs": "^4.5.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.8.0",
+    "@cloudflare/workers-types": "^4.20241205.0",
+    "@preact/preset-vite": "^2.10.3",
+    "@tailwindcss/vite": "^4.1.18",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/preact": "^3.2.4",
+    "jsdom": "^28.0.0",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^3.0.0",
+    "wrangler": "^3.99.0"
+  }
+}
