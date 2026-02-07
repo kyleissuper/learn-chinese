@@ -19,6 +19,7 @@ export const cards = sqliteTable("cards", {
   reps:          integer("reps").notNull().default(0),
   lapses:        integer("lapses").notNull().default(0),
   state:         integer("state").notNull().default(0),
+  learningSteps: integer("learning_steps").notNull().default(0),
   lastReview:    text("last_review"),
 
   createdAt: text("created_at").notNull().$defaultFn(() => new Date().toISOString()),

@@ -47,6 +47,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
       reps: empty.reps,
       lapses: empty.lapses,
       state: empty.state,
+      learningSteps: empty.learning_steps,
     })),
   ).onConflictDoNothing();
 

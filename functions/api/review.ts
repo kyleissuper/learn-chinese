@@ -4,7 +4,7 @@
 
 import { drizzle } from "drizzle-orm/d1";
 import { eq } from "drizzle-orm";
-import { fsrs, type Card, type Rating, type State } from "ts-fsrs";
+import { fsrs, type Card, type Grade, type State } from "ts-fsrs";
 import { cards } from "../db/schema";
 
 interface Env { DB: D1Database }
@@ -21,11 +21,12 @@ function toFsrsCard(row: typeof cards.$inferSelect): Card {
     lapses:         row.lapses,
     state:          row.state as State,
     last_review:    row.lastReview ? new Date(row.lastReview) : undefined,
+    learning_steps: row.learningSteps,
   };
 }
 
 export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
-  const { cardId, rating } = await request.json<{ cardId: string; rating: Rating }>();
+  const { cardId, rating } = await request.json<{ cardId: string; rating: Grade }>();
 
   if (!cardId || ![1, 2, 3, 4].includes(rating)) {
     return Response.json({ error: "Invalid cardId or rating" }, { status: 400 });
@@ -47,6 +48,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
     reps:          next.reps,
     lapses:        next.lapses,
     state:         next.state,
+    learningSteps: next.learning_steps,
     lastReview:    now.toISOString(),
   }).where(eq(cards.id, cardId));
 

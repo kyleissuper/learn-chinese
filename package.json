@@ -17,11 +17,11 @@
     "drizzle-orm": "^0.45.1",
     "preact": "^10.28.3",
     "preact-router": "^4.1.2",
-    "ts-fsrs": "^4.5.0"
+    "ts-fsrs": "^5.2.3"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.8.0",
-    "@cloudflare/workers-types": "^4.20241205.0",
+    "@cloudflare/vitest-pool-workers": "^0.12.10",
+    "@cloudflare/workers-types": "^4.20260207.0",
     "@preact/preset-vite": "^2.10.3",
     "@tailwindcss/vite": "^4.1.18",
     "@testing-library/jest-dom": "^6.9.1",
