@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [preact()],
   test: {
     environment: "jsdom",
-    include: ["test/ui/**/*.test.tsx"],
+    include: ["test/ui/**/*.test.{ts,tsx}"],
     setupFiles: ["./test/ui/setup.ts"],
   },
 });
