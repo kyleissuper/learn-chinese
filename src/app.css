@@ -5,7 +5,9 @@
   --font-sans: "Literata", Georgia, ui-serif, serif;
 }
 
-html { color-scheme: dark; }
+html { color-scheme: dark; background: #09090b; }
+
+
 html, body { overflow-x: clip; }
 body { background: #09090b; color: #f4f4f5; }
 
