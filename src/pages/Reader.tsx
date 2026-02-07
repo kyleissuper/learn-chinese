@@ -35,7 +35,7 @@ function Word({ seg, active, showPinyin, onTap }: WordProps) {
     <span class="word relative inline-block" onClick={(e) => { e.stopPropagation(); onTap(); }}>
       <ruby>
         {seg.text}
-        <rt class={`text-xs text-stone-400 font-normal ${showPinyin ? "" : "hidden"}`}>
+        <rt class={`text-xs text-zinc-500 font-normal ${showPinyin ? "" : "hidden"}`}>
           {seg.pinyin}
         </rt>
       </ruby>
@@ -69,19 +69,25 @@ export function Reader({ id }: { id?: string }) {
     return () => document.removeEventListener("click", dismiss);
   }, []);
 
-  if (error) return <div class="max-w-2xl mx-auto px-4 py-8"><p class="text-stone-400">Article not found.</p></div>;
-  if (!article) return <div class="max-w-2xl mx-auto px-4 py-8"><p class="text-stone-400">Loading...</p></div>;
+  if (error) return <div class="max-w-2xl mx-auto px-4 py-12"><p class="text-zinc-600 italic">Article not found.</p></div>;
+  if (!article) return (
+    <div class="max-w-2xl mx-auto px-4 py-12 space-y-4">
+      <div class="skeleton h-8 w-48" />
+      <div class="skeleton h-4 w-64" />
+      <div class="skeleton h-40 w-full mt-6" />
+    </div>
+  );
 
   return (
-    <div class="max-w-2xl mx-auto px-4 py-8" onClick={() => setActiveWord(null)}>
-      <a href="/" class="text-stone-400 hover:text-stone-600 text-sm mb-4 inline-block">&larr; Back</a>
-      <h1 class="text-3xl font-bold mb-1">{article.title} <SpeakButton text={article.title} /></h1>
-      <p class="text-stone-500 text-sm mb-6">{article.titlePinyin} — {article.titleTranslation} · {article.level}</p>
-      <label class="flex items-center gap-2 mb-6 text-sm text-stone-500 select-none">
-        <input type="checkbox" checked={showPinyin} onChange={() => setShowPinyin(!showPinyin)} class="rounded" />
+    <div class="page-enter max-w-2xl mx-auto px-4 py-12" onClick={() => setActiveWord(null)}>
+      <a href="/" class="text-zinc-600 hover:text-zinc-400 text-sm mb-6 inline-block transition-colors">&larr; Back</a>
+      <h1 class="text-3xl font-semibold mb-1 tracking-tight text-zinc-100">{article.title} <SpeakButton text={article.title} /></h1>
+      <p class="text-zinc-500 text-sm mb-8">{article.titlePinyin} — {article.titleTranslation} · {article.level}</p>
+      <label class="flex items-center gap-2 mb-8 text-sm text-zinc-500 select-none cursor-pointer">
+        <input type="checkbox" checked={showPinyin} onChange={() => setShowPinyin(!showPinyin)} class="rounded accent-blue-500" />
         Show all pinyin
       </label>
-      <article class="text-2xl leading-relaxed space-y-6">
+      <article class="text-2xl leading-relaxed space-y-6 text-zinc-200">
         {article.paragraphs.map((para, i) => (
           <p key={i}>
             {para.map((seg, j) => {

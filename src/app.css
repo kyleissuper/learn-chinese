@@ -1,8 +1,31 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
 
+@theme {
+  --font-sans: "Literata", Georgia, ui-serif, serif;
+}
+
+html { color-scheme: dark; }
 html, body { overflow-x: clip; }
+body { background: #09090b; color: #f4f4f5; }
 
-.word { cursor: pointer; border-radius: 2px; }
-.word:hover { background: #e0f2fe; }
-.popup { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 6px 12px; border-radius: 8px; font-size: 14px; white-space: nowrap; max-width: calc(100vw - 16px); z-index: 10; pointer-events: auto; }
-.popup .py { color: #93c5fd; margin-right: 8px; }
+/* Page fade-in */
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.page-enter { animation: fade-in 0.25s ease-out; }
+
+/* Word interactions */
+.word { cursor: pointer; border-radius: 2px; transition: background 0.15s; }
+.word:hover { background: rgba(59, 130, 246, 0.15); }
+
+/* Popup with entrance animation */
+@keyframes pop-in { from { opacity: 0; transform: translateX(-50%) scale(0.96); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
+.popup { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #27272a; color: #f4f4f5; padding: 6px 12px; border-radius: 8px; font-size: 14px; white-space: nowrap; max-width: calc(100vw - 16px); z-index: 10; pointer-events: auto; box-shadow: 0 4px 16px rgba(0,0,0,0.5); animation: pop-in 0.15s ease-out; }
+.popup .py { color: #60a5fa; margin-right: 8px; }
+
+/* Review card flip */
+@keyframes card-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+.card-enter { animation: card-in 0.25s ease-out; }
+
+/* Skeleton loading shimmer */
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+.skeleton { background: linear-gradient(90deg, #18181b 25%, #27272a 50%, #18181b 75%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; border-radius: 8px; }

@@ -11,10 +11,10 @@ interface Card {
 }
 
 const RATINGS = [
-  { value: 1, label: "Again", style: "bg-red-100 text-red-700" },
-  { value: 2, label: "Hard",  style: "bg-orange-100 text-orange-700" },
-  { value: 3, label: "Good",  style: "bg-green-100 text-green-700" },
-  { value: 4, label: "Easy",  style: "bg-blue-100 text-blue-700" },
+  { value: 1, label: "Again", style: "bg-red-950 text-red-400 border border-red-900" },
+  { value: 2, label: "Hard",  style: "bg-orange-950 text-orange-400 border border-orange-900" },
+  { value: 3, label: "Good",  style: "bg-green-950 text-green-400 border border-green-900" },
+  { value: 4, label: "Easy",  style: "bg-blue-950 text-blue-400 border border-blue-900" },
 ] as const;
 
 export function Review() {
@@ -62,35 +62,42 @@ export function Review() {
   const card = cards[cardIndex];
 
   return (
-    <div class="max-w-md mx-auto px-4 py-8 flex flex-col items-center">
-      <a href="/" class="self-start text-stone-400 hover:text-stone-600 text-sm mb-4">&larr; Back</a>
+    <div class="page-enter max-w-md mx-auto px-4 py-12 flex flex-col items-center">
+      <a href="/" class="self-start text-zinc-600 hover:text-zinc-400 text-sm mb-6 transition-colors">&larr; Back</a>
 
       {!done && card && <>
-        <p class="text-stone-400 text-sm mb-6">{cardIndex + 1} / {cards.length}</p>
-        <div class="w-full bg-white rounded-2xl shadow-md border border-stone-200 p-8 text-center min-h-[240px] flex flex-col items-center justify-center cursor-pointer select-none"
+        {/* Progress bar */}
+        <div class="w-full mb-6 flex items-center gap-3">
+          <div class="flex-1 h-1 bg-zinc-800 rounded-full overflow-hidden">
+            <div class="h-full bg-blue-500 rounded-full transition-all duration-300" style={{ width: `${((cardIndex) / cards.length) * 100}%` }} />
+          </div>
+          <span class="text-zinc-600 text-xs tabular-nums">{cardIndex + 1}/{cards.length}</span>
+        </div>
+
+        <div key={card.id} class="card-enter w-full bg-zinc-900/80 rounded-2xl border border-zinc-800/60 p-8 text-center min-h-[260px] flex flex-col items-center justify-center cursor-pointer select-none"
           onClick={() => setFlipped(true)}>
           {!flipped
-            ? <p class="text-5xl font-bold">{card.front}</p>
-            : <div>
-                <p class="text-2xl text-blue-500 mb-2">
+            ? <p class="text-5xl font-semibold text-zinc-100">{card.front}</p>
+            : <div class="card-enter">
+                <p class="text-2xl text-blue-400 mb-2">
                   {card.pinyin}
                   <SpeakButton text={card.front} />
                 </p>
-                <p class="text-xl">{card.definition}</p>
-                {card.example && <p class="text-stone-500 mt-4 text-lg">
+                <p class="text-xl text-zinc-200">{card.definition}</p>
+                {card.example && <p class="text-zinc-400 mt-4 text-lg">
                   {card.example}
                   <SpeakButton text={card.example} class="text-base" />
                 </p>}
-                {card.exampleTranslation && <p class="text-stone-400 text-sm mt-1">{card.exampleTranslation}</p>}
+                {card.exampleTranslation && <p class="text-zinc-600 text-sm mt-1">{card.exampleTranslation}</p>}
               </div>
           }
         </div>
-        {!flipped && <p class="text-stone-400 text-sm mt-4">Tap card to reveal</p>}
+        {!flipped && <p class="text-zinc-600 text-sm mt-4">Tap to reveal</p>}
         {flipped && (
-          <div class="grid grid-cols-4 gap-3 w-full mt-6">
+          <div class="grid grid-cols-4 gap-2 w-full mt-6">
             {RATINGS.map(r => (
               <button key={r.value} onClick={() => rate(r.value)}
-                class={`py-3 rounded-xl font-medium ${r.style}`}>
+                class={`py-3 rounded-xl font-medium transition-all hover:scale-[1.03] active:scale-[0.97] ${r.style}`}>
                 {r.label}
               </button>
             ))}
@@ -99,10 +106,10 @@ export function Review() {
       </>}
 
       {done && (
-        <div class="text-center mt-20">
-          <p class="text-4xl mb-4">All caught up!</p>
-          <p class="text-stone-500 mb-6">{reviewed ? `Reviewed ${reviewed} card${reviewed === 1 ? "" : "s"}.` : "No cards due right now."}</p>
-          <a href="/" class="text-blue-600 hover:underline">Back to articles</a>
+        <div class="page-enter text-center mt-20">
+          <p class="text-4xl font-medium mb-3 text-zinc-100">All caught up!</p>
+          <p class="text-zinc-500 mb-8">{reviewed ? `Reviewed ${reviewed} card${reviewed === 1 ? "" : "s"}.` : "No cards due right now."}</p>
+          <a href="/" class="inline-block px-5 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-zinc-100 transition-all text-sm">Back to articles</a>
         </div>
       )}
     </div>
