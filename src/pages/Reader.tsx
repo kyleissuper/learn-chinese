@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { speak } from "../speak";
+import { SpeakButton } from "../components/SpeakButton";
 
 interface Segment {
   text: string;
@@ -43,11 +43,7 @@ function Word({ seg, active, showPinyin, onTap }: WordProps) {
         <div ref={clamp} class="popup">
           <span class="py">{seg.pinyin}</span>
           {seg.definition}
-          <button
-            class="speak-btn ml-2 text-stone-400 hover:text-stone-600"
-            aria-label={`Speak ${seg.text}`}
-            onClick={(e) => { e.stopPropagation(); speak(seg.text); }}
-          >🔊</button>
+          <SpeakButton text={seg.text} />
         </div>
       )}
     </span>
