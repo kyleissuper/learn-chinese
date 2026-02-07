@@ -10,7 +10,8 @@
     "db:create": "wrangler d1 create learn-mandarin",
     "test": "vitest run && vitest run --config vitest.config.ui.ts",
     "test:api": "vitest run",
-    "test:ui": "vitest run --config vitest.config.ui.ts"
+    "test:ui": "vitest run --config vitest.config.ui.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.1",
@@ -25,6 +26,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/preact": "^3.2.4",
+    "husky": "^9.1.7",
     "jsdom": "^28.0.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
