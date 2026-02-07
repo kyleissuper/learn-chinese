@@ -1,5 +1,7 @@
 # Learn Mandarin
 
+[![Deploy](https://github.com/kyleissuper/learn-chinese/actions/workflows/deploy.yml/badge.svg)](https://github.com/kyleissuper/learn-chinese/actions/workflows/deploy.yml)
+
 A free, self-hosted alternative to graded Chinese reading apps like The Chairman's Bao. An AI agent generates reading content and flashcards at your level; a minimal web app handles reading and spaced repetition review. Total hosting cost: $0.
 
 Requires a technical background — you'll need to be comfortable with a terminal, npm, and deploying to Cloudflare. AI agents can also help with that. Built for heritage speakers who can speak but want to improve reading, though it works for any learner.
