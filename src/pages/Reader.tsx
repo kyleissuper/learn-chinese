@@ -21,6 +21,13 @@ interface WordProps {
   onTap: () => void;
 }
 
+function speak(text: string) {
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "zh-CN";
+  speechSynthesis.speak(u);
+}
+
 function Word({ seg, active, showPinyin, onTap }: WordProps) {
   return (
     <span class="word relative inline-block" onClick={(e) => { e.stopPropagation(); onTap(); }}>
@@ -34,6 +41,11 @@ function Word({ seg, active, showPinyin, onTap }: WordProps) {
         <div class="popup">
           <span class="py">{seg.pinyin}</span>
           {seg.definition}
+          <button
+            class="speak-btn ml-2 text-stone-400 hover:text-stone-600"
+            aria-label={`Speak ${seg.text}`}
+            onClick={(e) => { e.stopPropagation(); speak(seg.text); }}
+          >🔊</button>
         </div>
       )}
     </span>

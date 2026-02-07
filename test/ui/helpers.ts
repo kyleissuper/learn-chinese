@@ -54,6 +54,17 @@ export function jsonResponse(data: unknown, status = 200) {
   return { ok: status >= 200 && status < 300, status, json: () => Promise.resolve(data) };
 }
 
+/** Stub the Web Speech API (jsdom doesn't provide it). Returns the speak mock. */
+export function mockSpeechSynthesis() {
+  vi.stubGlobal("SpeechSynthesisUtterance", class {
+    text = ""; lang = "";
+    constructor(text: string) { this.text = text; }
+  });
+  const speak = vi.fn();
+  vi.stubGlobal("speechSynthesis", { speak, cancel: vi.fn() });
+  return speak;
+}
+
 /** Shorthand: error response */
 export function errorResponse(status = 404) {
   return { ok: false, status, json: () => Promise.reject(new Error("error")) };

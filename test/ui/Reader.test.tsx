@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/preact";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Reader } from "../../src/pages/Reader";
-import { makeArticle, mockFetch, jsonResponse, errorResponse } from "./helpers";
+import { makeArticle, mockFetch, mockSpeechSynthesis, jsonResponse, errorResponse } from "./helpers";
 
 describe("Reader", () => {
   beforeEach(() => {
@@ -125,6 +125,21 @@ describe("Reader", () => {
     await waitFor(() => {
       expect(screen.getByText("Article not found.")).toBeInTheDocument();
     });
+  });
+
+  it("speaks the word aloud when clicking the speaker button", async () => {
+    const speak = mockSpeechSynthesis();
+    mockFetch(() => jsonResponse(makeArticle()));
+    render(<Reader id="test-1" />);
+    await waitFor(() => {
+      expect(screen.getByText("你")).toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByText("你"));
+    fireEvent.click(screen.getByRole("button", { name: "Speak 你" }));
+    expect(speak).toHaveBeenCalledOnce();
+    expect(speak.mock.calls[0][0]).toBeInstanceOf(SpeechSynthesisUtterance);
+    expect(speak.mock.calls[0][0].text).toBe("你");
+    expect(speak.mock.calls[0][0].lang).toBe("zh-CN");
   });
 
   it("dismisses tooltip on click outside article container", async () => {
