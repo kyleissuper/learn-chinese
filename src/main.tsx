@@ -18,9 +18,10 @@ function App() {
 
       e.preventDefault();
       e.stopPropagation();
-      (document as any).startViewTransition(() => {
+      const t = (document as any).startViewTransition(() => {
         route(url.pathname + url.search);
       });
+      t.finished.then(() => scrollTo(0, 0));
     };
     document.addEventListener("click", handler, true);
     return () => document.removeEventListener("click", handler, true);
