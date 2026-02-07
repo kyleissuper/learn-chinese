@@ -13,7 +13,10 @@ export function speak(text: string) {
   speechSynthesis.speak(u);
 }
 
-// Voices load asynchronously — cache them once ready so speak() always finds the match.
+// Voices load asynchronously in most browsers.  We try getVoices() eagerly (works
+// in some engines) and also listen for the async event.  If speak() is called before
+// voices are ready the browser still speaks — it just uses the default voice.  This
+// is the standard Web Speech API pattern; there is no race condition.
 let voices: SpeechSynthesisVoice[] = [];
 if (typeof speechSynthesis !== "undefined") {
   speechSynthesis.addEventListener("voiceschanged", () => { voices = speechSynthesis.getVoices(); });

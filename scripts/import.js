@@ -24,7 +24,9 @@ const rows = deck.cards.map((c) => ({
   due: now,
 }));
 
-// Encode as JSON so SQLite parses the values — no manual SQL escaping.
+// Safe to interpolate: JSON.stringify produces double-quoted strings so the only
+// character that can break a SQL single-quoted literal is ' — which we escape to ''.
+// SQLite's json_each then unescapes '' back to ' before parsing, yielding valid JSON.
 const json = JSON.stringify(rows).replace(/'/g, "''");
 const sql = `INSERT OR IGNORE INTO cards (id,front,pinyin,definition,example,example_pinyin,example_translation,source_article,due)
 SELECT json_extract(value,'$.id'),json_extract(value,'$.front'),json_extract(value,'$.pinyin'),json_extract(value,'$.definition'),json_extract(value,'$.example'),json_extract(value,'$.example_pinyin'),json_extract(value,'$.example_translation'),json_extract(value,'$.source_article'),json_extract(value,'$.due')
