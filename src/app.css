@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+html { overflow-x: hidden; }
+
 .word { cursor: pointer; border-radius: 2px; }
 .word:hover { background: #e0f2fe; }
 .popup { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 6px 12px; border-radius: 8px; font-size: 14px; white-space: nowrap; max-width: calc(100vw - 16px); z-index: 10; pointer-events: auto; }
