@@ -5,7 +5,13 @@
 import { drizzle } from "drizzle-orm/d1";
 import { eq } from "drizzle-orm";
 import { fsrs, type Card, type Grade, type State } from "ts-fsrs";
+import { z } from "zod";
 import { cards } from "../db/schema";
+
+const ReviewInput = z.object({
+  cardId: z.string().min(1),
+  rating: z.number().int().min(1).max(4) as z.ZodType<Grade>,
+});
 
 interface Env { DB: D1Database }
 
@@ -26,11 +32,10 @@ function toFsrsCard(row: typeof cards.$inferSelect): Card {
 }
 
 export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
-  const { cardId, rating } = await request.json<{ cardId: string; rating: Grade }>();
+  const parsed = ReviewInput.safeParse(await request.json());
+  if (!parsed.success) return Response.json({ error: "Invalid cardId or rating" }, { status: 400 });
 
-  if (!cardId || ![1, 2, 3, 4].includes(rating)) {
-    return Response.json({ error: "Invalid cardId or rating" }, { status: 400 });
-  }
+  const { cardId, rating } = parsed.data;
 
   const db = drizzle(env.DB);
   const [row] = await db.select().from(cards).where(eq(cards.id, cardId));
