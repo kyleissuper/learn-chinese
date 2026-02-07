@@ -75,7 +75,7 @@ export function Reader({ id }: { id?: string }) {
   return (
     <div class="max-w-2xl mx-auto px-4 py-8" onClick={() => setActiveWord(null)}>
       <a href="/" class="text-stone-400 hover:text-stone-600 text-sm mb-4 inline-block">&larr; Back</a>
-      <h1 class="text-3xl font-bold mb-1">{article.title}</h1>
+      <h1 class="text-3xl font-bold mb-1">{article.title} <SpeakButton text={article.title} /></h1>
       <p class="text-stone-500 text-sm mb-6">{article.titlePinyin} — {article.titleTranslation} · {article.level}</p>
       <label class="flex items-center gap-2 mb-6 text-sm text-stone-500 select-none">
         <input type="checkbox" checked={showPinyin} onChange={() => setShowPinyin(!showPinyin)} class="rounded" />
