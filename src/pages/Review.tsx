@@ -71,7 +71,7 @@ export function Review() {
           <div class="flex-1 h-1 bg-zinc-800 rounded-full overflow-hidden">
             <div class="h-full bg-blue-500 rounded-full transition-all duration-300" style={{ width: `${((cardIndex) / cards.length) * 100}%` }} />
           </div>
-          <span class="text-zinc-600 text-xs tabular-nums">{cardIndex + 1}/{cards.length}</span>
+          <span class="text-zinc-600 text-xs tabular-nums">{cardIndex + 1} / {cards.length}</span>
         </div>
 
         <div key={card.id} class="card-enter w-full bg-zinc-900/80 rounded-2xl border border-zinc-800/60 p-8 text-center min-h-[260px] flex flex-col items-center justify-center cursor-pointer select-none"

@@ -72,6 +72,7 @@ export function Reader({ id }: { id?: string }) {
   if (error) return <div class="max-w-2xl mx-auto px-4 py-12"><p class="text-zinc-600 italic">Article not found.</p></div>;
   if (!article) return (
     <div class="max-w-2xl mx-auto px-4 py-12 space-y-4">
+      <p class="sr-only">Loading...</p>
       <div class="skeleton h-8 w-48" />
       <div class="skeleton h-4 w-64" />
       <div class="skeleton h-40 w-full mt-6" />
