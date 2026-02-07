@@ -20,7 +20,7 @@ function AnimatedRoutes() {
   prevPath.current = location.pathname;
 
   return (
-    <AnimatePresence mode="wait" initial={false} custom={forward}>
+    <AnimatePresence mode="wait" custom={forward}>
       <motion.div
         key={location.pathname}
         custom={forward}
