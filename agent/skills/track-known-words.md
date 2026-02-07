@@ -8,10 +8,11 @@ Periodically (e.g. weekly), or whenever the learner asks to refresh their word l
 
 ## Process
 
-1. Fetch all cards from the SRS API:
+1. Fetch all cards from the local database:
    ```bash
-   curl https://YOUR_DOMAIN/api/cards
+   npx wrangler d1 execute learn-mandarin --local --command "SELECT * FROM cards"
    ```
+   For production data, add `--remote` instead of `--local`.
 2. A word is considered **known** when its FSRS state indicates mastery:
    - `state` = 2 (Review) — the card has graduated from the learning phase
    - `stability` >= 10 — the card has high retention probability

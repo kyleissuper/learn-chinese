@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "wrangler pages dev --port 8788 & vite",
     "build": "vite build",
+    "import": "node scripts/import.js",
     "db:create": "wrangler d1 create learn-mandarin",
     "test": "vitest run && vitest run --config vitest.config.ui.ts",
     "test:api": "vitest run",

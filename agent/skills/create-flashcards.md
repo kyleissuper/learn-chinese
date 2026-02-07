@@ -47,9 +47,8 @@ Generate a flashcard deck from an article's vocabulary, ready to import into the
 After creating the deck file, import the cards into the SRS database:
 
 ```bash
-curl -X POST https://YOUR_DOMAIN/api/cards \
-  -H "Content-Type: application/json" \
-  -d @agent/content/decks/<article-id>.json
+npm run import -- agent/content/decks/<article-id>.json          # local
+npm run import -- agent/content/decks/<article-id>.json --remote  # prod
 ```
 
 ## Guidelines
