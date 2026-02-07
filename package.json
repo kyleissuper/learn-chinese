@@ -4,8 +4,7 @@
   "description": "Personal Mandarin learning app: AI agent-generated content + spaced repetition, deployed on Cloudflare Pages",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "dev:api": "npm run build && wrangler pages dev dist",
+    "dev": "wrangler pages dev --port 8788 & vite",
     "build": "vite build",
     "db:create": "wrangler d1 create learn-mandarin",
     "test": "vitest run && vitest run --config vitest.config.ui.ts",
