@@ -80,7 +80,7 @@ export function Reader({ id }: { id?: string }) {
   );
 
   return (
-    <div class="page-enter max-w-2xl mx-auto px-4 py-12" onClick={() => setActiveWord(null)}>
+    <div class="max-w-2xl mx-auto px-4 py-12" onClick={() => setActiveWord(null)}>
       <a href="/" class="text-zinc-600 hover:text-zinc-400 text-sm mb-6 inline-block transition-colors">&larr; Back</a>
       <h1 class="text-3xl font-semibold mb-1 tracking-tight text-zinc-100">{article.title} <SpeakButton text={article.title} /></h1>
       <p class="text-zinc-500 text-sm mb-8">{article.titlePinyin} — {article.titleTranslation} · {article.level}</p>

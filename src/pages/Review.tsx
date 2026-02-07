@@ -62,7 +62,7 @@ export function Review() {
   const card = cards[cardIndex];
 
   return (
-    <div class="page-enter max-w-md mx-auto px-4 py-12 flex flex-col items-center">
+    <div class="max-w-md mx-auto px-4 py-12 flex flex-col items-center">
       <a href="/" class="self-start text-zinc-600 hover:text-zinc-400 text-sm mb-6 transition-colors">&larr; Back</a>
 
       {!done && card && <>
@@ -106,7 +106,7 @@ export function Review() {
       </>}
 
       {done && (
-        <div class="page-enter text-center mt-20">
+        <div class="text-center mt-20">
           <p class="text-4xl font-medium mb-3 text-zinc-100">All caught up!</p>
           <p class="text-zinc-500 mb-8">{reviewed ? `Reviewed ${reviewed} card${reviewed === 1 ? "" : "s"}.` : "No cards due right now."}</p>
           <a href="/" class="inline-block px-5 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-zinc-100 transition-all text-sm">Back to articles</a>

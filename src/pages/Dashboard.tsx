@@ -21,7 +21,7 @@ export function Dashboard() {
   }, []);
 
   return (
-    <div class="page-enter max-w-2xl mx-auto px-4 py-12">
+    <div class="max-w-2xl mx-auto px-4 py-12">
       <h1 class="text-3xl font-semibold mb-1 tracking-tight text-zinc-100">Learn Mandarin</h1>
       <p class="text-zinc-500 mb-10">Read. Review. Repeat.</p>
 

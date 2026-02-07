@@ -9,9 +9,6 @@ html { color-scheme: dark; }
 html, body { overflow-x: clip; }
 body { background: #09090b; color: #f4f4f5; }
 
-/* Page fade-in */
-@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-.page-enter { animation: fade-in 0.25s ease-out; }
 
 /* Word interactions */
 .word { cursor: pointer; border-radius: 2px; transition: background 0.15s; }
