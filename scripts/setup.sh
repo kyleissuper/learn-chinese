@@ -28,6 +28,11 @@ $WRANGLER d1 execute "$PROJECT" --remote --file migrations/0001_init.sql
 # 5. Pages project (errors if exists, that's fine)
 $WRANGLER pages project create "$PROJECT" 2>/dev/null || true
 
+echo ""
 echo "Done. For CI/CD, add these GitHub repo secrets (Settings > Secrets > Actions):"
 echo "  CLOUDFLARE_ACCOUNT_ID  — dash.cloudflare.com > Workers & Pages > right sidebar"
-echo "  CLOUDFLARE_API_TOKEN   — dash.cloudflare.com > My Profile > API Tokens > Create Token > Edit Cloudflare Workers"
+echo "  CLOUDFLARE_API_TOKEN   — dash.cloudflare.com > My Profile > API Tokens > Create Token"
+echo "                           Use template 'Edit Cloudflare Workers', then pare down to:"
+echo "                           - Account > Cloudflare Pages > Edit"
+echo "                           - Account > D1 > Edit"
+echo "                           Leave IP filtering and TTL blank (GitHub Actions IPs rotate)."
