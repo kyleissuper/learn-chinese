@@ -13,11 +13,11 @@ export function Dashboard() {
 
   useEffect(() => {
     fetch("/content/articles/index.json")
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw r; return r.json(); })
       .then(setArticles)
       .catch(() => {});
     fetch("/api/cards?due=true")
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw r; return r.json(); })
       .then(c => setDueCount(c.length))
       .catch(() => {});
   }, []);
