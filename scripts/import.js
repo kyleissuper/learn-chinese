@@ -11,14 +11,24 @@ if (!file) {
 
 const deck = JSON.parse(readFileSync(file, "utf8"));
 const now = new Date().toISOString();
-const esc = (s) => (s != null ? `'${s.replace(/'/g, "''")}'` : "NULL");
 
-const sql = deck.cards
-  .map(
-    (c) =>
-      `INSERT INTO cards (id, front, pinyin, definition, example, example_pinyin, example_translation, source_article, due) VALUES ('${randomUUID()}', ${esc(c.front)}, ${esc(c.pinyin)}, ${esc(c.definition)}, ${esc(c.example)}, ${esc(c.examplePinyin)}, ${esc(c.exampleTranslation)}, ${esc(deck.sourceArticle)}, '${now}') ON CONFLICT DO NOTHING;`,
-  )
-  .join("\n");
+const rows = deck.cards.map((c) => ({
+  id: randomUUID(),
+  front: c.front,
+  pinyin: c.pinyin,
+  definition: c.definition,
+  example: c.example ?? null,
+  example_pinyin: c.examplePinyin ?? null,
+  example_translation: c.exampleTranslation ?? null,
+  source_article: deck.sourceArticle,
+  due: now,
+}));
+
+// Encode as JSON so SQLite parses the values — no manual SQL escaping.
+const json = JSON.stringify(rows).replace(/'/g, "''");
+const sql = `INSERT OR IGNORE INTO cards (id,front,pinyin,definition,example,example_pinyin,example_translation,source_article,due)
+SELECT json_extract(value,'$.id'),json_extract(value,'$.front'),json_extract(value,'$.pinyin'),json_extract(value,'$.definition'),json_extract(value,'$.example'),json_extract(value,'$.example_pinyin'),json_extract(value,'$.example_translation'),json_extract(value,'$.source_article'),json_extract(value,'$.due')
+FROM json_each('${json}');`;
 
 const tmp = "/tmp/import-cards.sql";
 writeFileSync(tmp, sql);
