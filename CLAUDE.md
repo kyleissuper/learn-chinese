@@ -19,7 +19,7 @@ Read these skill files for instructions when generating content:
 
 ## Importing Cards
 
-After creating a deck, import it into the database:
+After creating a deck, ask the user whether to import locally or to prod, then run the appropriate command:
 
 ```bash
 npm run import -- agent/content/decks/<id>.json          # local

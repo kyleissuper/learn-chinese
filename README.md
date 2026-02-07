@@ -20,12 +20,7 @@ Then lock it down with [Cloudflare Access](https://one.dash.cloudflare.com/) (Ze
 
 ## Generating Content
 
-Point an AI agent (e.g. Claude Code) at this project and ask it to write an article. It reads the skill prompts in `agent/skills/` and your vocabulary in `agent/known_words.json`, then outputs graded articles and flashcard decks to `agent/content/`.
-
-```bash
-npm run import -- agent/content/decks/<id>.json          # import cards locally
-npm run import -- agent/content/decks/<id>.json --remote  # import to prod
-```
+Point an AI coding agent at this project and tell it what you want to learn. It adapts to your level automatically.
 
 ## License
 
