@@ -32,7 +32,7 @@ const sql = `INSERT OR IGNORE INTO cards (id,front,pinyin,definition,example,exa
 SELECT json_extract(value,'$.id'),json_extract(value,'$.front'),json_extract(value,'$.pinyin'),json_extract(value,'$.definition'),json_extract(value,'$.example'),json_extract(value,'$.example_pinyin'),json_extract(value,'$.example_translation'),json_extract(value,'$.source_article'),json_extract(value,'$.due')
 FROM json_each('${json}');`;
 
-const tmp = "/tmp/import-cards.sql";
+const tmp = require("os").tmpdir() + "/import-cards.sql";
 writeFileSync(tmp, sql);
 const target = flags.includes("--remote") ? "--remote" : "--local";
 execSync(`npx wrangler d1 execute learn-mandarin ${target} --file=${tmp}`, {

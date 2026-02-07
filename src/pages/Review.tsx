@@ -49,6 +49,9 @@ export function Review() {
     return () => document.removeEventListener("keydown", h);
   }, []);
 
+  // Fire-and-forget: advance the UI immediately so reviews feel snappy.
+  // If the POST fails the card's FSRS state is unchanged and it simply
+  // reappears in the next review session — the safe failure mode for SRS.
   function rate(rating: number) {
     const c = cards[cardIndex];
     fetch("/api/review", {
