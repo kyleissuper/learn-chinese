@@ -1,4 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
+import { speak } from "../speak";
 
 interface Card {
   id: string;
@@ -71,9 +72,17 @@ export function Review() {
           {!flipped
             ? <p class="text-5xl font-bold">{card.front}</p>
             : <div>
-                <p class="text-2xl text-blue-500 mb-2">{card.pinyin}</p>
+                <p class="text-2xl text-blue-500 mb-2">
+                  {card.pinyin}
+                  <button class="ml-2 text-stone-400 hover:text-stone-600" aria-label={`Speak ${card.front}`}
+                    onClick={(e) => { e.stopPropagation(); speak(card.front); }}>🔊</button>
+                </p>
                 <p class="text-xl">{card.definition}</p>
-                {card.example && <p class="text-stone-500 mt-4 text-lg">{card.example}</p>}
+                {card.example && <p class="text-stone-500 mt-4 text-lg">
+                  {card.example}
+                  <button class="ml-2 text-stone-400 hover:text-stone-600 text-base" aria-label={`Speak ${card.example}`}
+                    onClick={(e) => { e.stopPropagation(); speak(card.example); }}>🔊</button>
+                </p>}
                 {card.exampleTranslation && <p class="text-stone-400 text-sm mt-1">{card.exampleTranslation}</p>}
               </div>
           }

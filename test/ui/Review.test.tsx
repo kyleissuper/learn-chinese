@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/preact";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Review } from "../../src/pages/Review";
-import { makeCards, mockFetch, jsonResponse } from "./helpers";
+import { makeCards, mockFetch, jsonResponse, mockSpeechSynthesis } from "./helpers";
 
 describe("Review", () => {
   beforeEach(() => {
@@ -161,6 +161,34 @@ describe("Review", () => {
       expect(screen.getByText("All caught up!")).toBeInTheDocument();
     });
     expect(screen.getByText("Reviewed 2 cards.")).toBeInTheDocument();
+  });
+
+  it("speaks the word when clicking speaker button on back", async () => {
+    const speak = mockSpeechSynthesis();
+    mockFetch(() => jsonResponse(makeCards(3)));
+    render(<Review />);
+    await waitFor(() => {
+      expect(screen.getByText("字1")).toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByText("字1"));
+    fireEvent.click(screen.getByRole("button", { name: "Speak 字1" }));
+    expect(speak).toHaveBeenCalledOnce();
+    expect(speak.mock.calls[0][0].text).toBe("字1");
+    expect(speak.mock.calls[0][0].lang).toBe("zh-CN");
+  });
+
+  it("speaks the example sentence when clicking its speaker button", async () => {
+    const speak = mockSpeechSynthesis();
+    mockFetch(() => jsonResponse(makeCards(3)));
+    render(<Review />);
+    await waitFor(() => {
+      expect(screen.getByText("字1")).toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByText("字1"));
+    fireEvent.click(screen.getByRole("button", { name: "Speak example 1" }));
+    expect(speak).toHaveBeenCalledOnce();
+    expect(speak.mock.calls[0][0].text).toBe("example 1");
+    expect(speak.mock.calls[0][0].lang).toBe("zh-CN");
   });
 
   it("back link to home", async () => {
