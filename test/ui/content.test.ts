@@ -1,37 +1,44 @@
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { describe, expect, it } from "vitest";
+import { z } from "zod";
 
-const articlesDir = "agent/content/articles";
+const Segment = z.object({
+  text: z.string(),
+  pinyin: z.string().optional(),
+  definition: z.string().optional(),
+});
 
-const articleFiles = readdirSync(articlesDir)
-  .filter((f) => f !== "index.json" && f.endsWith(".json"));
+const Article = z.object({
+  id: z.string(),
+  title: z.string(),
+  titlePinyin: z.string(),
+  titleTranslation: z.string(),
+  level: z.string(),
+  date: z.string().date(),
+  paragraphs: z.array(z.array(Segment)).min(1),
+});
+
+const IndexEntry = z.object({
+  id: z.string(),
+  title: z.string(),
+  level: z.string(),
+  date: z.string().date(),
+});
+
+const dir = "agent/content/articles";
+const files = readdirSync(dir).filter((f) => f !== "index.json" && f.endsWith(".json"));
+const read = (f: string) => JSON.parse(readFileSync(join(dir, f), "utf8"));
 
 describe("article content", () => {
-  it("index.json is valid JSON array", () => {
-    const index = JSON.parse(readFileSync(join(articlesDir, "index.json"), "utf8"));
-    expect(Array.isArray(index)).toBe(true);
+  it("index.json matches schema and all files exist", () => {
+    const index = z.array(IndexEntry).parse(read("index.json"));
     for (const entry of index) {
-      expect(entry).toHaveProperty("id");
-      expect(entry).toHaveProperty("title");
+      expect(files).toContain(`${entry.id}.json`);
     }
   });
 
-  for (const file of articleFiles) {
-    it(`${file} is valid JSON with expected structure`, () => {
-      const raw = readFileSync(join(articlesDir, file), "utf8");
-      const article = JSON.parse(raw);
-      expect(article).toHaveProperty("id");
-      expect(article).toHaveProperty("title");
-      expect(article).toHaveProperty("paragraphs");
-      expect(Array.isArray(article.paragraphs)).toBe(true);
-    });
+  for (const file of files) {
+    it(`${file} matches schema`, () => Article.parse(read(file)));
   }
-
-  it("every index entry has a matching article file", () => {
-    const index = JSON.parse(readFileSync(join(articlesDir, "index.json"), "utf8"));
-    for (const entry of index) {
-      expect(articleFiles).toContain(`${entry.id}.json`);
-    }
-  });
 });
