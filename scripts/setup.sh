@@ -4,13 +4,19 @@ set -euo pipefail
 PROJECT="learn-mandarin"
 WRANGLER="npx wrangler"
 
-# 1. Ensure logged in
-if $WRANGLER whoami 2>&1 | grep -q "not authenticated"; then
+# 1. Check dependencies
+if ! command -v jq &>/dev/null; then
+  echo "jq is required but not installed. Install it from https://jqlang.github.io/jq/download/"
+  exit 1
+fi
+
+# 2. Ensure logged in
+if ! $WRANGLER whoami &>/dev/null; then
   echo "Not logged in. Run 'npx wrangler login' first, then rerun this script."
   exit 1
 fi
 
-# 2. D1 databases (production + preview)
+# 3. D1 databases (production + preview)
 D1_LIST=$($WRANGLER d1 list --json)
 
 DB_ID=$(echo "$D1_LIST" | jq -r ".[] | select(.name == \"$PROJECT\") | .uuid")
@@ -31,21 +37,32 @@ if [ -z "$PREVIEW_DB_ID" ]; then
 fi
 echo "Preview D1 database ID:    $PREVIEW_DB_ID"
 
-# 3. Update wrangler.toml with real database IDs
-sed -i '' "s/database_id = .*/database_id = \"$DB_ID\"/" wrangler.toml
-if grep -q "preview_database_id" wrangler.toml; then
-  sed -i '' "s/preview_database_id = .*/preview_database_id = \"$PREVIEW_DB_ID\"/" wrangler.toml
+# 4. Update wrangler.toml with real database IDs
+if [[ "$OSTYPE" == darwin* ]]; then
+  SED=(sed -i '')
 else
-  sed -i '' "/database_id = /a\\
+  SED=(sed -i)
+fi
+
+"${SED[@]}" "s/^database_id = .*/database_id = \"$DB_ID\"/" wrangler.toml
+if grep -q "preview_database_id" wrangler.toml; then
+  "${SED[@]}" "s/^preview_database_id = .*/preview_database_id = \"$PREVIEW_DB_ID\"/" wrangler.toml
+else
+  "${SED[@]}" "/^database_id = /a\\
 preview_database_id = \"$PREVIEW_DB_ID\"" wrangler.toml
 fi
 
-# 4. Run migrations (IF NOT EXISTS makes this idempotent)
-$WRANGLER d1 execute "$PROJECT" --remote --file migrations/0001_init.sql
-$WRANGLER d1 execute "${PROJECT}-preview" --remote --file migrations/0001_init.sql
+# 5. Run migrations (production + local; preview is handled by CI)
+$WRANGLER d1 migrations apply --remote
+$WRANGLER d1 migrations apply --local
 
-# 5. Pages project (errors if exists, that's fine)
-$WRANGLER pages project create "$PROJECT" 2>/dev/null || true
+# 6. Pages project (ignore "already exists", fail on anything else)
+OUTPUT=$($WRANGLER pages project create "$PROJECT" 2>&1) || {
+  if ! echo "$OUTPUT" | grep -qi "already exists"; then
+    echo "Failed to create Pages project: $OUTPUT"
+    exit 1
+  fi
+}
 
 echo ""
 echo "Done. For CI/CD, add these GitHub repo secrets (Settings > Secrets > Actions):"
