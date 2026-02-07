@@ -4,7 +4,7 @@
   "description": "Personal Mandarin learning app: AI agent-generated content + spaced repetition, deployed on Cloudflare Pages",
   "private": true,
   "scripts": {
-    "dev": "wrangler pages dev --port 8788 & vite",
+    "dev": "trap 'kill 0' EXIT; wrangler pages dev --port 8788 & vite",
     "build": "vite build",
     "import": "node scripts/import.js",
     "db:create": "wrangler d1 create learn-mandarin",
