@@ -1,9 +1,58 @@
 [
   {
-    "id": "getting-coffee",
-    "name": "At the Coffee Shop - Vocabulary",
-    "sourceArticle": "getting-coffee",
-    "cardCount": 6,
-    "date": "2025-01-15"
+    "id": "morning-routine",
+    "name": "Morning Routine - Vocabulary",
+    "sourceArticle": "morning-routine",
+    "cardCount": 10,
+    "date": "2026-02-07"
+  },
+  {
+    "id": "eating-out",
+    "name": "Eating Out - Vocabulary",
+    "sourceArticle": "eating-out",
+    "cardCount": 10,
+    "date": "2026-02-07"
+  },
+  {
+    "id": "grocery-shopping",
+    "name": "Grocery Shopping - Vocabulary",
+    "sourceArticle": "grocery-shopping",
+    "cardCount": 10,
+    "date": "2026-02-07"
+  },
+  {
+    "id": "weather-seasons",
+    "name": "Weather & Seasons - Vocabulary",
+    "sourceArticle": "weather-seasons",
+    "cardCount": 10,
+    "date": "2026-02-07"
+  },
+  {
+    "id": "my-family",
+    "name": "My Family - Vocabulary",
+    "sourceArticle": "my-family",
+    "cardCount": 10,
+    "date": "2026-02-07"
+  },
+  {
+    "id": "weekend-plans",
+    "name": "Weekend Plans - Vocabulary",
+    "sourceArticle": "weekend-plans",
+    "cardCount": 9,
+    "date": "2026-02-07"
+  },
+  {
+    "id": "learning-chinese",
+    "name": "Learning Chinese - Vocabulary",
+    "sourceArticle": "learning-chinese",
+    "cardCount": 9,
+    "date": "2026-02-07"
+  },
+  {
+    "id": "seeing-doctor",
+    "name": "Seeing the Doctor - Vocabulary",
+    "sourceArticle": "seeing-doctor",
+    "cardCount": 10,
+    "date": "2026-02-07"
   }
 ]

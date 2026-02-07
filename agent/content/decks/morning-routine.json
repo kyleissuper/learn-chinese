@@ -1,0 +1,87 @@
+{
+  "id": "morning-routine",
+  "name": "Morning Routine - Vocabulary",
+  "sourceArticle": "morning-routine",
+  "cards": [
+    {
+      "front": "刷牙",
+      "pinyin": "shuāyá",
+      "definition": "to brush one's teeth",
+      "example": "我每天早上起床以后先刷牙。",
+      "examplePinyin": "Wǒ měitiān zǎoshang qǐchuáng yǐhòu xiān shuāyá.",
+      "exampleTranslation": "Every morning after I get up, I brush my teeth first."
+    },
+    {
+      "front": "脸",
+      "pinyin": "liǎn",
+      "definition": "face",
+      "example": "你洗脸了吗？",
+      "examplePinyin": "Nǐ xǐ liǎn le ma?",
+      "exampleTranslation": "Did you wash your face?"
+    },
+    {
+      "front": "办法",
+      "pinyin": "bànfǎ",
+      "definition": "way; method; solution",
+      "example": "我没办法帮你。",
+      "examplePinyin": "Wǒ méi bànfǎ bāng nǐ.",
+      "exampleTranslation": "I have no way to help you."
+    },
+    {
+      "front": "准备",
+      "pinyin": "zhǔnbèi",
+      "definition": "to prepare; to get ready",
+      "example": "妈妈在厨房准备早餐。",
+      "examplePinyin": "Māma zài chúfáng zhǔnbèi zǎocān.",
+      "exampleTranslation": "Mom is preparing breakfast in the kitchen."
+    },
+    {
+      "front": "早餐",
+      "pinyin": "zǎocān",
+      "definition": "breakfast",
+      "example": "你每天吃早餐吗？",
+      "examplePinyin": "Nǐ měitiān chī zǎocān ma?",
+      "exampleTranslation": "Do you eat breakfast every day?"
+    },
+    {
+      "front": "面包",
+      "pinyin": "miànbāo",
+      "definition": "bread",
+      "example": "我喜欢吃面包。",
+      "examplePinyin": "Wǒ xǐhuan chī miànbāo.",
+      "exampleTranslation": "I like to eat bread."
+    },
+    {
+      "front": "咖啡",
+      "pinyin": "kāfēi",
+      "definition": "coffee",
+      "example": "你要喝咖啡还是茶？",
+      "examplePinyin": "Nǐ yào hē kāfēi háishi chá?",
+      "exampleTranslation": "Do you want to drink coffee or tea?"
+    },
+    {
+      "front": "出门",
+      "pinyin": "chūmén",
+      "definition": "to go out; to leave the house",
+      "example": "我八点出门去公司。",
+      "examplePinyin": "Wǒ bā diǎn chūmén qù gōngsī.",
+      "exampleTranslation": "I leave the house at eight o'clock to go to the office."
+    },
+    {
+      "front": "上班",
+      "pinyin": "shàngbān",
+      "definition": "to go to work; to start work",
+      "example": "爸爸每天早上去上班。",
+      "examplePinyin": "Bàba měitiān zǎoshang qù shàngbān.",
+      "exampleTranslation": "Dad goes to work every morning."
+    },
+    {
+      "front": "迟到",
+      "pinyin": "chídào",
+      "definition": "to be late; to arrive late",
+      "example": "如果走得慢，就会迟到。",
+      "examplePinyin": "Rúguǒ zǒu de màn, jiù huì chídào.",
+      "exampleTranslation": "If you walk slowly, you'll be late."
+    }
+  ]
+}

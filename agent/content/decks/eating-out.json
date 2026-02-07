@@ -1,0 +1,87 @@
+{
+  "id": "eating-out",
+  "name": "Eating Out - Vocabulary",
+  "sourceArticle": "eating-out",
+  "cards": [
+    {
+      "front": "分钟",
+      "pinyin": "fēnzhōng",
+      "definition": "minute",
+      "example": "从我家走路五分钟就到了。",
+      "examplePinyin": "Cóng wǒ jiā zǒulù wǔ fēnzhōng jiù dào le.",
+      "exampleTranslation": "It's just a five-minute walk from my house."
+    },
+    {
+      "front": "服务员",
+      "pinyin": "fúwùyuán",
+      "definition": "waiter; server",
+      "example": "我叫服务员来。",
+      "examplePinyin": "Wǒ jiào fúwùyuán lái.",
+      "exampleTranslation": "I'll call the waiter over."
+    },
+    {
+      "front": "菜单",
+      "pinyin": "càidān",
+      "definition": "menu",
+      "example": "你看一下菜单吧。",
+      "examplePinyin": "Nǐ kàn yíxià càidān ba.",
+      "exampleTranslation": "Take a look at the menu."
+    },
+    {
+      "front": "点菜",
+      "pinyin": "diǎncài",
+      "definition": "to order food",
+      "example": "我们开始点菜吧！",
+      "examplePinyin": "Wǒmen kāishǐ diǎncài ba!",
+      "exampleTranslation": "Let's start ordering!"
+    },
+    {
+      "front": "碗",
+      "pinyin": "wǎn",
+      "definition": "bowl (measure word)",
+      "example": "我要一碗汤。",
+      "examplePinyin": "Wǒ yào yì wǎn tāng.",
+      "exampleTranslation": "I want a bowl of soup."
+    },
+    {
+      "front": "味道",
+      "pinyin": "wèidào",
+      "definition": "taste; flavor",
+      "example": "这个菜的味道很好。",
+      "examplePinyin": "Zhège cài de wèidào hěn hǎo.",
+      "exampleTranslation": "This dish tastes very good."
+    },
+    {
+      "front": "特别",
+      "pinyin": "tèbié",
+      "definition": "especially; particularly",
+      "example": "那个鱼特别好吃。",
+      "examplePinyin": "Nàge yú tèbié hǎochī.",
+      "exampleTranslation": "That fish is especially delicious."
+    },
+    {
+      "front": "结账",
+      "pinyin": "jiézhàng",
+      "definition": "to pay the bill; to settle the check",
+      "example": "吃好了，我们结账吧。",
+      "examplePinyin": "Chī hǎo le, wǒmen jiézhàng ba.",
+      "exampleTranslation": "We're done eating, let's pay the bill."
+    },
+    {
+      "front": "块",
+      "pinyin": "kuài",
+      "definition": "yuan (informal unit of money)",
+      "example": "这个东西多少块钱？",
+      "examplePinyin": "Zhège dōngxi duōshǎo kuài qián?",
+      "exampleTranslation": "How much money is this?"
+    },
+    {
+      "front": "次",
+      "pinyin": "cì",
+      "definition": "time (occurrence); measure word for events",
+      "example": "下次我还想来这个饭馆。",
+      "examplePinyin": "Xià cì wǒ hái xiǎng lái zhège fànguǎn.",
+      "exampleTranslation": "Next time I still want to come to this restaurant."
+    }
+  ]
+}

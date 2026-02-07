@@ -1,0 +1,87 @@
+{
+  "id": "weather-seasons",
+  "name": "Weather & Seasons - Vocabulary",
+  "sourceArticle": "weather-seasons",
+  "cards": [
+    {
+      "front": "天气",
+      "pinyin": "tiānqì",
+      "definition": "weather",
+      "example": "今天天气怎么样？",
+      "examplePinyin": "Jīntiān tiānqì zěnmeyàng?",
+      "exampleTranslation": "How's the weather today?"
+    },
+    {
+      "front": "下雨",
+      "pinyin": "xiàyǔ",
+      "definition": "to rain",
+      "example": "外面下雨了，我们不去了。",
+      "examplePinyin": "Wàimiàn xiàyǔ le, wǒmen bú qù le.",
+      "exampleTranslation": "It's raining outside, we're not going anymore."
+    },
+    {
+      "front": "伞",
+      "pinyin": "sǎn",
+      "definition": "umbrella",
+      "example": "要下雨了，你带伞了吗？",
+      "examplePinyin": "Yào xiàyǔ le, nǐ dài sǎn le ma?",
+      "exampleTranslation": "It's going to rain, did you bring an umbrella?"
+    },
+    {
+      "front": "好像",
+      "pinyin": "hǎoxiàng",
+      "definition": "it seems like; as if",
+      "example": "好像马上要下雨了。",
+      "examplePinyin": "Hǎoxiàng mǎshàng yào xiàyǔ le.",
+      "exampleTranslation": "It looks like it's going to rain soon."
+    },
+    {
+      "front": "温度",
+      "pinyin": "wēndù",
+      "definition": "temperature",
+      "example": "今天温度很低。",
+      "examplePinyin": "Jīntiān wēndù hěn dī.",
+      "exampleTranslation": "The temperature is very low today."
+    },
+    {
+      "front": "低",
+      "pinyin": "dī",
+      "definition": "low",
+      "example": "今天温度很低，要多穿衣服。",
+      "examplePinyin": "Jīntiān wēndù hěn dī, yào duō chuān yīfu.",
+      "exampleTranslation": "The temperature is very low today, you need to wear more clothes."
+    },
+    {
+      "front": "电影",
+      "pinyin": "diànyǐng",
+      "definition": "movie",
+      "example": "我们一起在家看电影吧。",
+      "examplePinyin": "Wǒmen yìqǐ zài jiā kàn diànyǐng ba.",
+      "exampleTranslation": "Let's watch a movie together at home."
+    },
+    {
+      "front": "季节",
+      "pinyin": "jìjié",
+      "definition": "season",
+      "example": "你最喜欢哪个季节？",
+      "examplePinyin": "Nǐ zuì xǐhuan nǎge jìjié?",
+      "exampleTranslation": "Which season do you like the most?"
+    },
+    {
+      "front": "晴天",
+      "pinyin": "qíngtiān",
+      "definition": "sunny day; clear day",
+      "example": "我喜欢晴天，可以去外面玩。",
+      "examplePinyin": "Wǒ xǐhuan qíngtiān, kěyǐ qù wàimiàn wán.",
+      "exampleTranslation": "I like sunny days, you can go play outside."
+    },
+    {
+      "front": "下雪",
+      "pinyin": "xiàxuě",
+      "definition": "to snow",
+      "example": "下雪了，外面很好看！",
+      "examplePinyin": "Xiàxuě le, wàimiàn hěn hǎokàn!",
+      "exampleTranslation": "It's snowing, it looks beautiful outside!"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "weekend-plans",
+  "name": "Weekend Plans - Vocabulary",
+  "sourceArticle": "weekend-plans",
+  "cards": [
+    {
+      "front": "打",
+      "pinyin": "dǎ",
+      "definition": "make (a call); hit; play (sports)",
+      "example": "我给朋友打电话。",
+      "examplePinyin": "Wǒ gěi péngyou dǎ diànhuà.",
+      "exampleTranslation": "I called my friend."
+    },
+    {
+      "front": "约",
+      "pinyin": "yuē",
+      "definition": "invite; make plans with",
+      "example": "我约他一起去玩。",
+      "examplePinyin": "Wǒ yuē tā yìqǐ qù wán.",
+      "exampleTranslation": "I made plans with him to go hang out."
+    },
+    {
+      "front": "电影",
+      "pinyin": "diànyǐng",
+      "definition": "movie; film",
+      "example": "我们去看电影吧。",
+      "examplePinyin": "Wǒmen qù kàn diànyǐng ba.",
+      "exampleTranslation": "Let's go watch a movie."
+    },
+    {
+      "front": "公园",
+      "pinyin": "gōngyuán",
+      "definition": "park",
+      "example": "我喜欢去公园玩。",
+      "examplePinyin": "Wǒ xǐhuan qù gōngyuán wán.",
+      "exampleTranslation": "I like going to the park to hang out."
+    },
+    {
+      "front": "散步",
+      "pinyin": "sànbù",
+      "definition": "take a walk; stroll",
+      "example": "我们去公园散步吧。",
+      "examplePinyin": "Wǒmen qù gōngyuán sànbù ba.",
+      "exampleTranslation": "Let's go for a walk in the park."
+    },
+    {
+      "front": "运动",
+      "pinyin": "yùndòng",
+      "definition": "exercise; sports",
+      "example": "我没有时间运动。",
+      "examplePinyin": "Wǒ méiyǒu shíjiān yùndòng.",
+      "exampleTranslation": "I don't have time to exercise."
+    },
+    {
+      "front": "点",
+      "pinyin": "diǎn",
+      "definition": "o'clock (for telling time)",
+      "example": "现在两点了。",
+      "examplePinyin": "Xiànzài liǎng diǎn le.",
+      "exampleTranslation": "It's two o'clock now."
+    },
+    {
+      "front": "无聊",
+      "pinyin": "wúliáo",
+      "definition": "boring; bored",
+      "example": "在家太无聊了。",
+      "examplePinyin": "Zài jiā tài wúliáo le.",
+      "exampleTranslation": "It's too boring at home."
+    },
+    {
+      "front": "出去",
+      "pinyin": "chūqù",
+      "definition": "go out; go outside",
+      "example": "我们出去玩吧！",
+      "examplePinyin": "Wǒmen chūqù wán ba!",
+      "exampleTranslation": "Let's go out and have fun!"
+    }
+  ]
+}

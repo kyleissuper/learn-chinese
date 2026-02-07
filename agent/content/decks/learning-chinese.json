@@ -1,0 +1,79 @@
+{
+  "id": "learning-chinese",
+  "name": "Learning Chinese - Vocabulary",
+  "sourceArticle": "learning-chinese",
+  "cards": [
+    {
+      "front": "认识",
+      "pinyin": "rènshi",
+      "definition": "to recognize; to know (a character/person)",
+      "example": "你认识他吗？",
+      "examplePinyin": "Nǐ rènshi tā ma?",
+      "exampleTranslation": "Do you know him?"
+    },
+    {
+      "front": "汉字",
+      "pinyin": "hànzì",
+      "definition": "Chinese characters",
+      "example": "这个汉字很难写。",
+      "examplePinyin": "Zhège hànzì hěn nán xiě.",
+      "exampleTranslation": "This Chinese character is very hard to write."
+    },
+    {
+      "front": "个",
+      "pinyin": "gè",
+      "definition": "(general measure word)",
+      "example": "我有一个问题。",
+      "examplePinyin": "Wǒ yǒu yí gè wèntí.",
+      "exampleTranslation": "I have a question."
+    },
+    {
+      "front": "练习",
+      "pinyin": "liànxí",
+      "definition": "to practice; practice",
+      "example": "我每天练习写汉字。",
+      "examplePinyin": "Wǒ měitiān liànxí xiě hànzì.",
+      "exampleTranslation": "I practice writing Chinese characters every day."
+    },
+    {
+      "front": "发现",
+      "pinyin": "fāxiàn",
+      "definition": "to discover; to find out",
+      "example": "我发现这个东西很好用。",
+      "examplePinyin": "Wǒ fāxiàn zhège dōngxi hěn hǎo yòng.",
+      "exampleTranslation": "I discovered this thing is very easy to use."
+    },
+    {
+      "front": "其实",
+      "pinyin": "qíshí",
+      "definition": "actually; in fact",
+      "example": "其实这个不难。",
+      "examplePinyin": "Qíshí zhège bù nán.",
+      "exampleTranslation": "Actually, this isn't hard."
+    },
+    {
+      "front": "坚持",
+      "pinyin": "jiānchí",
+      "definition": "to persist; to keep at it",
+      "example": "你要坚持每天学。",
+      "examplePinyin": "Nǐ yào jiānchí měitiān xué.",
+      "exampleTranslation": "You need to keep at it and study every day."
+    },
+    {
+      "front": "进步",
+      "pinyin": "jìnbù",
+      "definition": "progress; to improve",
+      "example": "你的中文有进步了！",
+      "examplePinyin": "Nǐ de Zhōngwén yǒu jìnbù le!",
+      "exampleTranslation": "Your Chinese has improved!"
+    },
+    {
+      "front": "有用",
+      "pinyin": "yǒuyòng",
+      "definition": "useful; helpful",
+      "example": "学汉字真的很有用。",
+      "examplePinyin": "Xué hànzì zhēn de hěn yǒuyòng.",
+      "exampleTranslation": "Learning Chinese characters is really useful."
+    }
+  ]
+}

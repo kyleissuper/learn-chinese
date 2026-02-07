@@ -1,0 +1,87 @@
+{
+  "id": "seeing-doctor",
+  "name": "Seeing the Doctor - Vocabulary",
+  "sourceArticle": "seeing-doctor",
+  "cards": [
+    {
+      "front": "身体",
+      "pinyin": "shēntǐ",
+      "definition": "body; health",
+      "example": "你身体好吗？",
+      "examplePinyin": "Nǐ shēntǐ hǎo ma?",
+      "exampleTranslation": "How is your health?"
+    },
+    {
+      "front": "头疼",
+      "pinyin": "tóuténg",
+      "definition": "headache; to have a headache",
+      "example": "我今天头疼，不想去学校。",
+      "examplePinyin": "Wǒ jīntiān tóuténg, bù xiǎng qù xuéxiào.",
+      "exampleTranslation": "I have a headache today and don't want to go to school."
+    },
+    {
+      "front": "发烧",
+      "pinyin": "fāshāo",
+      "definition": "to have a fever",
+      "example": "她发烧了，要去看医生。",
+      "examplePinyin": "Tā fāshāo le, yào qù kàn yīshēng.",
+      "exampleTranslation": "She has a fever and needs to see a doctor."
+    },
+    {
+      "front": "感冒",
+      "pinyin": "gǎnmào",
+      "definition": "to catch a cold; a cold",
+      "example": "我感冒了，很不好。",
+      "examplePinyin": "Wǒ gǎnmào le, hěn bù hǎo.",
+      "exampleTranslation": "I caught a cold and feel terrible."
+    },
+    {
+      "front": "生病",
+      "pinyin": "shēngbìng",
+      "definition": "to get sick; to fall ill",
+      "example": "他生病了，不能来学校。",
+      "examplePinyin": "Tā shēngbìng le, bù néng lái xuéxiào.",
+      "exampleTranslation": "He got sick and can't come to school."
+    },
+    {
+      "front": "休息",
+      "pinyin": "xiūxi",
+      "definition": "to rest; rest",
+      "example": "你累了，要多休息。",
+      "examplePinyin": "Nǐ lèi le, yào duō xiūxi.",
+      "exampleTranslation": "You're tired; you should rest more."
+    },
+    {
+      "front": "药",
+      "pinyin": "yào",
+      "definition": "medicine; medication",
+      "example": "医生给了我一些药。",
+      "examplePinyin": "Yīshēng gěi le wǒ yìxiē yào.",
+      "exampleTranslation": "The doctor gave me some medicine."
+    },
+    {
+      "front": "可能",
+      "pinyin": "kěnéng",
+      "definition": "maybe; possibly",
+      "example": "他可能不来了。",
+      "examplePinyin": "Tā kěnéng bù lái le.",
+      "exampleTranslation": "He probably isn't coming."
+    },
+    {
+      "front": "健康",
+      "pinyin": "jiànkāng",
+      "definition": "healthy; health",
+      "example": "身体健康最好。",
+      "examplePinyin": "Shēntǐ jiànkāng zuì hǎo.",
+      "exampleTranslation": "Good health is the best thing."
+    },
+    {
+      "front": "重要",
+      "pinyin": "zhòngyào",
+      "definition": "important",
+      "example": "这个事情很重要。",
+      "examplePinyin": "Zhège shìqing hěn zhòngyào.",
+      "exampleTranslation": "This matter is very important."
+    }
+  ]
+}

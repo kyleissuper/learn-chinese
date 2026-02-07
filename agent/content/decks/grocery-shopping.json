@@ -1,0 +1,87 @@
+{
+  "id": "grocery-shopping",
+  "name": "Grocery Shopping - Vocabulary",
+  "sourceArticle": "grocery-shopping",
+  "cards": [
+    {
+      "front": "蔬菜",
+      "pinyin": "shūcài",
+      "definition": "vegetables",
+      "example": "妈妈叫我去买蔬菜。",
+      "examplePinyin": "Māma jiào wǒ qù mǎi shūcài.",
+      "exampleTranslation": "Mom told me to go buy vegetables."
+    },
+    {
+      "front": "苹果",
+      "pinyin": "píngguǒ",
+      "definition": "apple",
+      "example": "我很喜欢吃苹果。",
+      "examplePinyin": "Wǒ hěn xǐhuan chī píngguǒ.",
+      "exampleTranslation": "I really like eating apples."
+    },
+    {
+      "front": "新鲜",
+      "pinyin": "xīnxiān",
+      "definition": "fresh",
+      "example": "这个水果很新鲜。",
+      "examplePinyin": "Zhège shuǐguǒ hěn xīnxiān.",
+      "exampleTranslation": "This fruit is very fresh."
+    },
+    {
+      "front": "块",
+      "pinyin": "kuài",
+      "definition": "yuan (unit of money)",
+      "example": "这个东西三块钱。",
+      "examplePinyin": "Zhège dōngxi sān kuài qián.",
+      "exampleTranslation": "This thing costs three yuan."
+    },
+    {
+      "front": "香蕉",
+      "pinyin": "xiāngjiāo",
+      "definition": "banana",
+      "example": "香蕉比苹果贵一点。",
+      "examplePinyin": "Xiāngjiāo bǐ píngguǒ guì yìdiǎn.",
+      "exampleTranslation": "Bananas are a little more expensive than apples."
+    },
+    {
+      "front": "比",
+      "pinyin": "bǐ",
+      "definition": "compared to; than",
+      "example": "他比我高。",
+      "examplePinyin": "Tā bǐ wǒ gāo.",
+      "exampleTranslation": "He is taller than me."
+    },
+    {
+      "front": "西瓜",
+      "pinyin": "xīguā",
+      "definition": "watermelon",
+      "example": "这个西瓜太大了，我不要买。",
+      "examplePinyin": "Zhège xīguā tài dà le, wǒ bú yào mǎi.",
+      "exampleTranslation": "This watermelon is too big, I don't want to buy it."
+    },
+    {
+      "front": "一共",
+      "pinyin": "yígòng",
+      "definition": "altogether; in total",
+      "example": "一共多少钱？",
+      "examplePinyin": "Yígòng duōshao qián?",
+      "exampleTranslation": "How much is it altogether?"
+    },
+    {
+      "front": "花",
+      "pinyin": "huā",
+      "definition": "to spend (money)",
+      "example": "我花了很多钱买东西。",
+      "examplePinyin": "Wǒ huā le hěn duō qián mǎi dōngxi.",
+      "exampleTranslation": "I spent a lot of money buying things."
+    },
+    {
+      "front": "公斤",
+      "pinyin": "gōngjīn",
+      "definition": "kilogram",
+      "example": "苹果一公斤八块钱。",
+      "examplePinyin": "Píngguǒ yì gōngjīn bā kuài qián.",
+      "exampleTranslation": "Apples are eight yuan per kilogram."
+    }
+  ]
+}

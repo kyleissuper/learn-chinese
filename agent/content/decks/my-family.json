@@ -1,0 +1,87 @@
+{
+  "id": "my-family",
+  "name": "My Family - Vocabulary",
+  "sourceArticle": "my-family",
+  "cards": [
+    {
+      "front": "个",
+      "pinyin": "gè",
+      "definition": "measure word (for people, general objects)",
+      "example": "我有三个朋友。",
+      "examplePinyin": "Wǒ yǒu sān gè péngyou.",
+      "exampleTranslation": "I have three friends."
+    },
+    {
+      "front": "上班",
+      "pinyin": "shàngbān",
+      "definition": "go to work",
+      "example": "爸爸每天早上去上班。",
+      "examplePinyin": "Bàba měitiān zǎoshang qù shàngbān.",
+      "exampleTranslation": "Dad goes to work every morning."
+    },
+    {
+      "front": "做饭",
+      "pinyin": "zuòfàn",
+      "definition": "cook (a meal)",
+      "example": "妈妈喜欢做饭。",
+      "examplePinyin": "Māma xǐhuan zuòfàn.",
+      "exampleTranslation": "Mom likes to cook."
+    },
+    {
+      "front": "话",
+      "pinyin": "huà",
+      "definition": "words; speech",
+      "example": "他说的话很好。",
+      "examplePinyin": "Tā shuō de huà hěn hǎo.",
+      "exampleTranslation": "What he said was very good."
+    },
+    {
+      "front": "让",
+      "pinyin": "ràng",
+      "definition": "make (someone do something); let",
+      "example": "他说的话让我们笑了。",
+      "examplePinyin": "Tā shuō de huà ràng wǒmen xiào le.",
+      "exampleTranslation": "What he said made us laugh."
+    },
+    {
+      "front": "照顾",
+      "pinyin": "zhàogu",
+      "definition": "take care of; look after",
+      "example": "妈妈每天照顾妹妹。",
+      "examplePinyin": "Māma měitiān zhàogu mèimei.",
+      "exampleTranslation": "Mom takes care of younger sister every day."
+    },
+    {
+      "front": "聊天",
+      "pinyin": "liáotiān",
+      "definition": "chat; talk",
+      "example": "我喜欢和朋友一起聊天。",
+      "examplePinyin": "Wǒ xǐhuan hé péngyou yìqǐ liáotiān.",
+      "exampleTranslation": "I like chatting with friends."
+    },
+    {
+      "front": "安静",
+      "pinyin": "ānjìng",
+      "definition": "quiet; peaceful",
+      "example": "家里面很安静。",
+      "examplePinyin": "Jiā lǐmiàn hěn ānjìng.",
+      "exampleTranslation": "It's very quiet at home."
+    },
+    {
+      "front": "大家",
+      "pinyin": "dàjiā",
+      "definition": "everyone; everybody",
+      "example": "大家都很开心。",
+      "examplePinyin": "Dàjiā dōu hěn kāixīn.",
+      "exampleTranslation": "Everyone is very happy."
+    },
+    {
+      "front": "休息",
+      "pinyin": "xiūxi",
+      "definition": "rest; relax",
+      "example": "他很累了，想休息一下。",
+      "examplePinyin": "Tā hěn lèi le, xiǎng xiūxi yíxià.",
+      "exampleTranslation": "He's very tired and wants to rest a bit."
+    }
+  ]
+}
