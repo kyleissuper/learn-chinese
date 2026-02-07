@@ -74,7 +74,7 @@ export function Review() {
         {/* Progress bar */}
         <div className="w-full mb-6 flex items-center gap-3">
           <div className="flex-1 h-1 bg-zinc-800 rounded-full overflow-hidden">
-            <div className="h-full bg-blue-500 rounded-full transition-all duration-300" style={{ width: `${((cardIndex) / cards.length) * 100}%` }} />
+            <div className="h-full bg-blue-500 rounded-full transition-all duration-300" style={{ width: `${((cardIndex + 1) / cards.length) * 100}%` }} />
           </div>
           <span className="text-zinc-600 text-xs tabular-nums">{cardIndex + 1} / {cards.length}</span>
         </div>
