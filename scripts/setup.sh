@@ -10,20 +10,39 @@ if $WRANGLER whoami 2>&1 | grep -q "not authenticated"; then
   exit 1
 fi
 
-# 2. D1 database
-DB_ID=$($WRANGLER d1 list --json | jq -r ".[] | select(.name == \"$PROJECT\") | .uuid")
+# 2. D1 databases (production + preview)
+D1_LIST=$($WRANGLER d1 list --json)
+
+DB_ID=$(echo "$D1_LIST" | jq -r ".[] | select(.name == \"$PROJECT\") | .uuid")
 if [ -z "$DB_ID" ]; then
-  echo "Creating D1 database..."
+  echo "Creating production D1 database..."
   $WRANGLER d1 create "$PROJECT"
-  DB_ID=$($WRANGLER d1 list --json | jq -r ".[] | select(.name == \"$PROJECT\") | .uuid")
+  D1_LIST=$($WRANGLER d1 list --json)
+  DB_ID=$(echo "$D1_LIST" | jq -r ".[] | select(.name == \"$PROJECT\") | .uuid")
 fi
-echo "D1 database ID: $DB_ID"
+echo "Production D1 database ID: $DB_ID"
 
-# 3. Update wrangler.toml with real database_id
+PREVIEW_DB_ID=$(echo "$D1_LIST" | jq -r ".[] | select(.name == \"${PROJECT}-preview\") | .uuid")
+if [ -z "$PREVIEW_DB_ID" ]; then
+  echo "Creating preview D1 database..."
+  $WRANGLER d1 create "${PROJECT}-preview"
+  D1_LIST=$($WRANGLER d1 list --json)
+  PREVIEW_DB_ID=$(echo "$D1_LIST" | jq -r ".[] | select(.name == \"${PROJECT}-preview\") | .uuid")
+fi
+echo "Preview D1 database ID:    $PREVIEW_DB_ID"
+
+# 3. Update wrangler.toml with real database IDs
 sed -i '' "s/database_id = .*/database_id = \"$DB_ID\"/" wrangler.toml
+if grep -q "preview_database_id" wrangler.toml; then
+  sed -i '' "s/preview_database_id = .*/preview_database_id = \"$PREVIEW_DB_ID\"/" wrangler.toml
+else
+  sed -i '' "/database_id = /a\\
+preview_database_id = \"$PREVIEW_DB_ID\"" wrangler.toml
+fi
 
-# 4. Run migration (IF NOT EXISTS makes this idempotent)
+# 4. Run migrations (IF NOT EXISTS makes this idempotent)
 $WRANGLER d1 execute "$PROJECT" --remote --file migrations/0001_init.sql
+$WRANGLER d1 execute "${PROJECT}-preview" --remote --file migrations/0001_init.sql
 
 # 5. Pages project (errors if exists, that's fine)
 $WRANGLER pages project create "$PROJECT" 2>/dev/null || true
