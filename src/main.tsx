@@ -20,7 +20,7 @@ function AnimatedRoutes() {
   prevPath.current = location.pathname;
 
   return (
-    <AnimatePresence mode="wait" custom={forward}>
+    <AnimatePresence mode="wait" custom={forward} onExitComplete={() => window.scrollTo(0, 0)}>
       <motion.div
         key={location.pathname}
         custom={forward}
