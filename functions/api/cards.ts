@@ -4,7 +4,19 @@
 import { drizzle } from "drizzle-orm/d1";
 import { lte, desc } from "drizzle-orm";
 import { createEmptyCard } from "ts-fsrs";
+import { z } from "zod";
 import { cards } from "../db/schema";
+
+const CardInput = z.object({
+  front: z.string(),
+  pinyin: z.string().optional(),
+  definition: z.string(),
+  example: z.string().optional(),
+  examplePinyin: z.string().optional(),
+  exampleTranslation: z.string().optional(),
+  sourceArticle: z.string().optional(),
+});
+const DeckInput = z.object({ cards: z.array(CardInput).min(1) });
 
 interface Env { DB: D1Database }
 
@@ -21,13 +33,14 @@ export const onRequestGet: PagesFunction<Env> = async ({ env, request }) => {
 };
 
 export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
-  const { cards: input } = await request.json<{ cards: any[] }>();
-  if (!input?.length) return Response.json({ error: "No cards" }, { status: 400 });
+  const parsed = DeckInput.safeParse(await request.json());
+  if (!parsed.success) return Response.json({ error: "Invalid deck" }, { status: 400 });
 
+  const input = parsed.data.cards;
   const db = drizzle(env.DB);
   const empty = createEmptyCard(new Date());
 
-  const sourceArticle = input[0]?.sourceArticle ?? null;
+  const sourceArticle = input[0].sourceArticle ?? null;
 
   await db.insert(cards).values(
     input.map((c) => ({
