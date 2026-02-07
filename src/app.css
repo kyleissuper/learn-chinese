@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-html { overflow-x: hidden; }
+html, body { overflow-x: clip; }
 
 .word { cursor: pointer; border-radius: 2px; }
 .word:hover { background: #e0f2fe; }
