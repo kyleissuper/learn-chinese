@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { SpeakButton } from "../components/SpeakButton";
 
@@ -24,7 +24,6 @@ export function Review() {
   const [flipped, setFlipped] = useState(false);
   const [reviewed, setReviewed] = useState(0);
   const [loaded, setLoaded] = useState(false);
-
   // Fetch due cards on mount ([] = run once)
   useEffect(() => {
     fetch("/api/cards?due=true")
@@ -34,19 +33,21 @@ export function Review() {
   }, []);
 
   // Keyboard shortcuts: space to flip, 1-4 to rate.
-  // Re-registers on every render (no deps) so the handler sees fresh state.
+  // Handler is refreshed every render; effect wires it up once.
+  const onKeyDown = useRef((_e: KeyboardEvent) => {});
+  onKeyDown.current = (e: KeyboardEvent) => {
+    if (e.key === " ") {
+      e.preventDefault();
+      setFlipped(true);
+    }
+    const r = RATINGS.find(r => String(r.value) === e.key);
+    if (r && flipped) rate(r.value);
+  };
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === " ") {
-        e.preventDefault();
-        setFlipped(true);
-      }
-      const r = RATINGS.find(r => String(r.value) === e.key);
-      if (r && flipped) rate(r.value);
-    };
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
-  });
+    const h = (e: KeyboardEvent) => onKeyDown.current(e);
+    document.addEventListener("keydown", h);
+    return () => document.removeEventListener("keydown", h);
+  }, []);
 
   function rate(rating: number) {
     const c = cards[cardIndex];
