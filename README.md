@@ -10,7 +10,7 @@ Requires Node.js 18+ and a [Cloudflare account](https://dash.cloudflare.com/sign
 
 ```bash
 npm install
-npm run db:create        # creates D1 database — paste the ID into wrangler.toml
+bash scripts/setup.sh    # creates D1 databases, updates wrangler.toml, runs migrations
 npm run dev              # local dev (http://localhost:5173)
 ```
 
