@@ -23,6 +23,14 @@ interface WordProps {
 }
 
 function Word({ seg, active, showPinyin, onTap }: WordProps) {
+  const clamp = (el: HTMLDivElement | null) => {
+    if (!el) return;
+    const { left, right } = el.getBoundingClientRect();
+    const vw = window.innerWidth;
+    if (left < 8) el.style.transform = `translateX(calc(-50% + ${8 - left}px))`;
+    else if (right > vw - 8) el.style.transform = `translateX(calc(-50% - ${right - vw + 8}px))`;
+  };
+
   return (
     <span class="word relative inline-block" onClick={(e) => { e.stopPropagation(); onTap(); }}>
       <ruby>
@@ -32,7 +40,7 @@ function Word({ seg, active, showPinyin, onTap }: WordProps) {
         </rt>
       </ruby>
       {active && (
-        <div class="popup">
+        <div ref={clamp} class="popup">
           <span class="py">{seg.pinyin}</span>
           {seg.definition}
           <button
