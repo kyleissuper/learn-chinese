@@ -2,7 +2,7 @@
 
 [![Deploy](https://github.com/kyleissuper/learn-chinese/actions/workflows/deploy.yml/badge.svg)](https://github.com/kyleissuper/learn-chinese/actions/workflows/deploy.yml)
 
-Free, self-hosted graded Chinese reader + flashcards. Your own AI agent generates content at your level; a Cloudflare Pages app handles reading and [FSRS](https://github.com/open-spaced-repetition/ts-fsrs) spaced repetition. Hosting cost: $0.
+Free, self-hosted graded Chinese reader + flashcards. Your own AI codint agent generates content at your level; a Cloudflare Pages app handles reading and [FSRS](https://github.com/open-spaced-repetition/ts-fsrs) spaced repetition. Hosting cost: $0.
 
 ## Setup
 
